@@ -5,6 +5,8 @@ VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SrtFixer", "SrtFixer\SrtFixer.csproj", "{F38F0964-FC05-4C35-A2E7-F4ABDE6E32FB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SrtFixerTest", "SrtFixerTest\SrtFixerTest.csproj", "{29760BDE-F223-4968-A015-3B321B8D8AA4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{F38F0964-FC05-4C35-A2E7-F4ABDE6E32FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F38F0964-FC05-4C35-A2E7-F4ABDE6E32FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F38F0964-FC05-4C35-A2E7-F4ABDE6E32FB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{29760BDE-F223-4968-A015-3B321B8D8AA4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{29760BDE-F223-4968-A015-3B321B8D8AA4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{29760BDE-F223-4968-A015-3B321B8D8AA4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{29760BDE-F223-4968-A015-3B321B8D8AA4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
