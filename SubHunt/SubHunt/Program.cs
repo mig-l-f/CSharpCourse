@@ -8,42 +8,12 @@ namespace SubHuntCS
 {
     class Program
     {
-
-        private static Random prng = new Random();
-
-        private static int randIndex(Array a, int rank = 0)
-        {
-            return prng.Next(a.GetUpperBound(rank) + 1);
-        }
-
-        private static void printSubmarineGridToConsole(Location[,] grid)
-        {
-            for (int j = 0; j <= grid.GetUpperBound(1); j++)
-            {
-                for (int i = 0; i <= grid.GetUpperBound(0); i++)
-                {
-                    if (grid[i, j].hasSubmarine)
-                        Console.Write("o");
-                    else if (grid[i, j].hasBeenFiredOn)
-                        Console.Write("x");
-                    else
-                        Console.Write("-");
-
-                }
-                Console.WriteLine("");
-            }
-        }
-
+        
         static void Main(string[] args)
         {
             //    ' Make a 3 x 3 grid
-            Location[,] subGrid = new Location[3, 3];
-            for (int i = 0; i <= subGrid.GetUpperBound(0); i++)
-                for (int j = 0; j <= subGrid.GetUpperBound(1); j++)
-                    subGrid[i, j] = new Location();
+            SubGrid subGrid = new SubGrid(3, 3);
 
-            // Setting submarine position
-            subGrid[randIndex(subGrid, 0), randIndex(subGrid, 1)].hasSubmarine = true;
 
             bool shouldContinuePlaying = true;
             do
@@ -67,17 +37,16 @@ namespace SubHuntCS
 
                 try
                 {
-                    if (subGrid[guessX, guessY].hasSubmarine)
+                    if (subGrid.hasSubmarineInPosition(guessX, guessY))
                     {
                         Console.Beep();
                         Console.ForegroundColor = ConsoleColor.DarkRed;
                         Console.WriteLine("You found it!");
                         Console.ForegroundColor = ConsoleColor.White;
-                        printSubmarineGridToConsole(subGrid);
+                        Console.Write(subGrid);
                     }
                     else
                     {
-                        subGrid[guessX, guessY].hasBeenFiredOn = true;
                         Console.WriteLine("Not there, sorry.");
                     }
                 }

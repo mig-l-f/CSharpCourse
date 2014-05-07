@@ -10,7 +10,7 @@ namespace SubHuntCS
     {
         public Boolean hasSubmarine { get; set; } // Property, set has access to keyword value - what the user has set to
         private Boolean _firedUpon;
-        public Boolean hasBeenFiredOn // More complete property
+        public Boolean hasBeenFiredUpon // More complete property
         {
             get { return _firedUpon; }
             set { if (value == true) _firedUpon = true; }
