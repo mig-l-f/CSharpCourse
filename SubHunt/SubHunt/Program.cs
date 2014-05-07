@@ -16,14 +16,33 @@ namespace SubHuntCS
             return prng.Next(a.GetUpperBound(rank) + 1);
         }
 
+        private static void printSubGridToConsole(Location[,] grid)
+        {
+            for (int j = 0; j <= grid.GetUpperBound(1); j++)
+            {
+                for (int i = 0; i <= grid.GetUpperBound(0); i++)
+                {
+                    if (grid[i, j].hasSubmarine)
+                        Console.Write("o");
+                    else
+                        Console.Write("-");
+
+                }
+                Console.WriteLine("");
+            }
+        }
+
         static void Main(string[] args)
         {
             //    ' Make a 3 x 3 grid
-            Boolean[,] subGrid = new Boolean[3, 3];
-            //Tile[,] subGrid = new Tile[3, 3];
-            // I am hiding my sub in the centre. Shhhh.
-                       
-            subGrid[randIndex(subGrid, 0), randIndex(subGrid, 1)] = true;
+            Location[,] subGrid = new Location[3, 3];
+            for (int i = 0; i <= subGrid.GetUpperBound(0); i++)
+                for (int j = 0; j <= subGrid.GetUpperBound(1); j++)
+                    subGrid[i, j] = new Location();
+
+                    // I am hiding my sub in the centre. Shhhh.
+
+            subGrid[randIndex(subGrid, 0), randIndex(subGrid, 1)].hasSubmarine = true;
 
             bool shouldContinuePlaying = true;
             do
@@ -47,13 +66,13 @@ namespace SubHuntCS
 
                 try
                 {
-                    if (subGrid[guessX, guessY])
+                    if (subGrid[guessX, guessY].hasSubmarine)
                     {
                         Console.Beep();
                         Console.ForegroundColor = ConsoleColor.DarkRed;
                         Console.WriteLine("You found it!");
                         Console.ForegroundColor = ConsoleColor.White;
-
+                        printSubGridToConsole(subGrid);
                     }
                     else
                     {
