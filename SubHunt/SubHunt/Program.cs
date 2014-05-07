@@ -8,15 +8,22 @@ namespace SubHuntCS
 {
     class Program
     {
+
+        private static Random prng = new Random();
+
+        private static int randIndex(Array a, int rank = 0)
+        {
+            return prng.Next(a.GetUpperBound(rank) + 1);
+        }
+
         static void Main(string[] args)
         {
             //    ' Make a 3 x 3 grid
             Boolean[,] subGrid = new Boolean[3, 3];
+            //Tile[,] subGrid = new Tile[3, 3];
             // I am hiding my sub in the centre. Shhhh.
-            //subGrid[1, 1] = true;
-            Random prng = new Random();
-            subGrid[Convert.ToInt32(Math.Floor((Double)prng.Next(subGrid.GetUpperBound(0) + 1))),
-                    Convert.ToInt32(Math.Floor((Double)prng.Next(subGrid.GetUpperBound(1) + 1)))] = true;
+                       
+            subGrid[randIndex(subGrid, 0), randIndex(subGrid, 1)] = true;
 
             bool shouldContinuePlaying = true;
             do
