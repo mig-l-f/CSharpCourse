@@ -16,7 +16,7 @@ namespace SubHuntCS
             return prng.Next(a.GetUpperBound(rank) + 1);
         }
 
-        private static void printSubGridToConsole(Location[,] grid)
+        private static void printSubmarineGridToConsole(Location[,] grid)
         {
             for (int j = 0; j <= grid.GetUpperBound(1); j++)
             {
@@ -24,6 +24,8 @@ namespace SubHuntCS
                 {
                     if (grid[i, j].hasSubmarine)
                         Console.Write("o");
+                    else if (grid[i, j].hasBeenFiredOn)
+                        Console.Write("x");
                     else
                         Console.Write("-");
 
@@ -40,8 +42,7 @@ namespace SubHuntCS
                 for (int j = 0; j <= subGrid.GetUpperBound(1); j++)
                     subGrid[i, j] = new Location();
 
-                    // I am hiding my sub in the centre. Shhhh.
-
+            // Setting submarine position
             subGrid[randIndex(subGrid, 0), randIndex(subGrid, 1)].hasSubmarine = true;
 
             bool shouldContinuePlaying = true;
@@ -72,10 +73,11 @@ namespace SubHuntCS
                         Console.ForegroundColor = ConsoleColor.DarkRed;
                         Console.WriteLine("You found it!");
                         Console.ForegroundColor = ConsoleColor.White;
-                        printSubGridToConsole(subGrid);
+                        printSubmarineGridToConsole(subGrid);
                     }
                     else
                     {
+                        subGrid[guessX, guessY].hasBeenFiredOn = true;
                         Console.WriteLine("Not there, sorry.");
                     }
                 }
