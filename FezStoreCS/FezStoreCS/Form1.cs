@@ -12,8 +12,13 @@ namespace FezStoreCS
 {
     public partial class Form1 : Form
     {
-        public Form1()
+
+        private BasketList myBasket;
+
+        public Form1(BasketList basket)
         {
+            myBasket = basket;
+
             InitializeComponent();
 
             cbFezStyle.Items.Add(new FezStyle("This is classy.\nLined in PVC.",
@@ -56,6 +61,11 @@ namespace FezStoreCS
         private void cbFezSize_SelectedIndexChanged(object sender, EventArgs e)
         {
             calculatePrice();
+        }
+
+        private void add_button_Click(object sender, EventArgs e)
+        {
+            myBasket.Add((FezSize)(cbFezSize.SelectedItem),(FezStyle)(cbFezStyle.SelectedItem));
         }
     }
 }

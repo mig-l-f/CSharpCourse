@@ -1,0 +1,26 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace FezStoreCS
+{
+    public class FezItem
+    {
+
+        private FezSize fez_size_;
+        private FezStyle fez_style_;
+
+        public FezItem(FezSize fez_size, FezStyle fez_style)
+        {
+            fez_size_ = fez_size;
+            fez_style_ = fez_style;
+        }
+
+        public double getPrice()
+        {
+            return Convert.ToDouble(fez_style_.basePrice) * Convert.ToDouble(fez_size_.priceModifier);
+        }
+    }
+}

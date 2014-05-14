@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FezStoreCS
 {
-    class FezSize
+    public class FezSize
     {
         public String label { get; set; }
         public Double priceModifier { get; set; }

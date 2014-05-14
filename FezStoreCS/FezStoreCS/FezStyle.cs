@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FezStoreCS
 {
-    class FezStyle
+    public class FezStyle
     {
         public String longDescription { get; set; }
         public String shortDescription { get; set; }
