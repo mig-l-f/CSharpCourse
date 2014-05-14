@@ -67,5 +67,12 @@ namespace FezStoreCS
         {
             myBasket.Add((FezSize)(cbFezSize.SelectedItem),(FezStyle)(cbFezStyle.SelectedItem));
         }
+
+        private void viewReceiptButton_Click(object sender, EventArgs e)
+        {
+            ReceiptView rv = new ReceiptView(myBasket);
+            add_button.Click += new System.EventHandler(rv.UpdateList);
+            rv.Show();
+        }
     }
 }

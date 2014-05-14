@@ -56,7 +56,16 @@ namespace FezStoreCS
             Assert.True(myBasket.Count() == 1);
         }
 
-    
+        [Test]
+        public void testRetrievingObjectFromBasket()
+        {
+            FezSize fez_size = new FezSize("Test Fez Size", 1.3);
+            FezStyle fez_style = new FezStyle("Long Description", "Short", 15.0m, true);
+            //FezItem fez_item = new FezItem(fez_size, fez_style);
+            myBasket.Add(fez_size, fez_style);
+            FezItem item = myBasket[0];
+            
+        }
 
     }
 

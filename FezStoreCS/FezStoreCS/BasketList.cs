@@ -24,5 +24,13 @@ namespace FezStoreCS
         {
             return shopping_basket.Count;
         }
+
+        public FezItem this[int index]{
+            get
+            {
+                return shopping_basket[index];
+            }
+            set { }
+        }
     }
 }

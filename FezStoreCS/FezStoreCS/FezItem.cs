@@ -22,5 +22,15 @@ namespace FezStoreCS
         {
             return Convert.ToDouble(fez_style_.basePrice) * Convert.ToDouble(fez_size_.priceModifier);
         }
+
+        public override string ToString()
+        {
+            StringBuilder fezItemText = new StringBuilder();
+            fezItemText.Append(fez_style_.shortDescription);
+            fezItemText.Append(" (in ");
+            fezItemText.Append(fez_size_.label);
+            fezItemText.Append(")\n");
+            return fezItemText.ToString();
+        }
     }
 }

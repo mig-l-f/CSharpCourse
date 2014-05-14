@@ -36,13 +36,14 @@
             this.rtbLongDesc = new System.Windows.Forms.RichTextBox();
             this.lblPrice = new System.Windows.Forms.Label();
             this.add_button = new System.Windows.Forms.Button();
+            this.viewReceiptButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // cbFezStyle
             // 
             this.cbFezStyle.FormattingEnabled = true;
             this.cbFezStyle.Location = new System.Drawing.Point(16, 26);
-            this.cbFezStyle.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cbFezStyle.Margin = new System.Windows.Forms.Padding(2);
             this.cbFezStyle.Name = "cbFezStyle";
             this.cbFezStyle.Size = new System.Drawing.Size(169, 21);
             this.cbFezStyle.TabIndex = 0;
@@ -52,7 +53,7 @@
             // 
             this.cbFezSize.FormattingEnabled = true;
             this.cbFezSize.Location = new System.Drawing.Point(208, 25);
-            this.cbFezSize.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cbFezSize.Margin = new System.Windows.Forms.Padding(2);
             this.cbFezSize.Name = "cbFezSize";
             this.cbFezSize.Size = new System.Drawing.Size(195, 21);
             this.cbFezSize.TabIndex = 1;
@@ -91,7 +92,7 @@
             // rtbLongDesc
             // 
             this.rtbLongDesc.Location = new System.Drawing.Point(22, 80);
-            this.rtbLongDesc.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.rtbLongDesc.Margin = new System.Windows.Forms.Padding(2);
             this.rtbLongDesc.Name = "rtbLongDesc";
             this.rtbLongDesc.Size = new System.Drawing.Size(264, 118);
             this.rtbLongDesc.TabIndex = 5;
@@ -112,19 +113,30 @@
             // 
             // add_button
             // 
-            this.add_button.Location = new System.Drawing.Point(315, 172);
+            this.add_button.Location = new System.Drawing.Point(291, 140);
             this.add_button.Name = "add_button";
-            this.add_button.Size = new System.Drawing.Size(75, 23);
+            this.add_button.Size = new System.Drawing.Size(117, 23);
             this.add_button.TabIndex = 7;
             this.add_button.Text = "Add";
             this.add_button.UseVisualStyleBackColor = true;
             this.add_button.Click += new System.EventHandler(this.add_button_Click);
+            // 
+            // viewReceiptButton
+            // 
+            this.viewReceiptButton.Location = new System.Drawing.Point(292, 172);
+            this.viewReceiptButton.Name = "viewReceiptButton";
+            this.viewReceiptButton.Size = new System.Drawing.Size(116, 23);
+            this.viewReceiptButton.TabIndex = 8;
+            this.viewReceiptButton.Text = "View Receipt";
+            this.viewReceiptButton.UseVisualStyleBackColor = true;
+            this.viewReceiptButton.Click += new System.EventHandler(this.viewReceiptButton_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(420, 207);
+            this.Controls.Add(this.viewReceiptButton);
             this.Controls.Add(this.add_button);
             this.Controls.Add(this.lblPrice);
             this.Controls.Add(this.rtbLongDesc);
@@ -133,7 +145,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.cbFezSize);
             this.Controls.Add(this.cbFezStyle);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Form1";
             this.Text = "FezStoreCS";
             this.ResumeLayout(false);
@@ -151,6 +163,7 @@
         private System.Windows.Forms.RichTextBox rtbLongDesc;
         private System.Windows.Forms.Label lblPrice;
         private System.Windows.Forms.Button add_button;
+        private System.Windows.Forms.Button viewReceiptButton;
     }
 }
 

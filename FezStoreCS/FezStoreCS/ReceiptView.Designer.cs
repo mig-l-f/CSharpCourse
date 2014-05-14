@@ -28,34 +28,33 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.itemsListTextBox = new System.Windows.Forms.TextBox();
+            this.itemListTextBox = new System.Windows.Forms.RichTextBox();
             this.SuspendLayout();
             // 
-            // itemsListTextBox
+            // itemListTextBox
             // 
-            this.itemsListTextBox.Location = new System.Drawing.Point(12, 23);
-            this.itemsListTextBox.Multiline = true;
-            this.itemsListTextBox.Name = "itemsListTextBox";
-            this.itemsListTextBox.Size = new System.Drawing.Size(260, 226);
-            this.itemsListTextBox.TabIndex = 0;
-            this.itemsListTextBox.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            this.itemListTextBox.Location = new System.Drawing.Point(13, 13);
+            this.itemListTextBox.Name = "itemListTextBox";
+            this.itemListTextBox.Size = new System.Drawing.Size(259, 225);
+            this.itemListTextBox.TabIndex = 0;
+            this.itemListTextBox.Text = "";
             // 
             // ReceiptView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 261);
-            this.Controls.Add(this.itemsListTextBox);
+            this.Controls.Add(this.itemListTextBox);
             this.Name = "ReceiptView";
             this.Text = "ReceiptView";
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.TextBox itemsListTextBox;
+        private System.Windows.Forms.RichTextBox itemListTextBox;
+
 
     }
 }
