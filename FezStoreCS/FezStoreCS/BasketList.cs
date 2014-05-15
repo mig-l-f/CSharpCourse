@@ -32,5 +32,14 @@ namespace FezStoreCS
             }
             set { }
         }
+        public double GetTotalAmount()
+        {
+            double total_amount = 0.0;
+            foreach(FezItem item in shopping_basket){
+                total_amount += item.getPrice();
+            }
+            return total_amount;
+        }
+
     }
 }

@@ -51,7 +51,6 @@ namespace FezStoreCS
         {
             FezSize fez_size = new FezSize("Test Fez Size", 1.3);
             FezStyle fez_style = new FezStyle("Long Description", "Short", 15.0m, true);
-            //FezItem fez_item = new FezItem(fez_size, fez_style);
             myBasket.Add(fez_size, fez_style);
             Assert.True(myBasket.Count() == 1);
         }
@@ -61,11 +60,21 @@ namespace FezStoreCS
         {
             FezSize fez_size = new FezSize("Test Fez Size", 1.3);
             FezStyle fez_style = new FezStyle("Long Description", "Short", 15.0m, true);
-            //FezItem fez_item = new FezItem(fez_size, fez_style);
             myBasket.Add(fez_size, fez_style);
             FezItem item = myBasket[0];
             
         }
+
+        [Test]
+        public void testSumOfShoppingBasket()
+        {
+            FezSize fez_size = new FezSize("Test Fez Size", 1.3);
+            FezStyle fez_style = new FezStyle("Long Description", "Short", 15.0m, true);
+            myBasket.Add(fez_size, fez_style);
+            myBasket.Add(fez_size, fez_style);
+            Assert.AreEqual(myBasket.GetTotalAmount(), (double)(2 * 1.3 * 15.0));
+        }
+
 
     }
 

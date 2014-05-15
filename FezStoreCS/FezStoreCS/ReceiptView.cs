@@ -30,10 +30,14 @@ namespace FezStoreCS
                 receiptText.Append(shopping_basket[x]);
             }
             itemListTextBox.Text = receiptText.ToString();
+
+            totalAmountTextBox.Text = String.Format("{0,2:C}", shopping_basket.GetTotalAmount());
         }
         public void UpdateList(object sender, EventArgs e)
         {
             UpdateList();
         }
+
+        
     }
 }
