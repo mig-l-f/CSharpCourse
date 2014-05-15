@@ -3,16 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Collections.ObjectModel;
 
 namespace FezStoreCS
 {
     public class BasketList
     {
-        List<FezItem> shopping_basket;
+        public ObservableCollection<FezItem> shopping_basket;
 
         public BasketList()
         {
-            shopping_basket = new List<FezItem>();
+            shopping_basket = new ObservableCollection<FezItem>();
         }
 
         public void Add(FezSize size, FezStyle style)

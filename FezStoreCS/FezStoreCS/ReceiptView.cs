@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Collections.Specialized;
 
 namespace FezStoreCS
 {
@@ -17,6 +18,8 @@ namespace FezStoreCS
         public ReceiptView(BasketList basket)
         {
             shopping_basket = basket;
+            shopping_basket.shopping_basket.CollectionChanged +=
+                new NotifyCollectionChangedEventHandler(this.UpdateList);
             InitializeComponent();
             UpdateList();
         }
