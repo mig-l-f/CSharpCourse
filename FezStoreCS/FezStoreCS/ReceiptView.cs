@@ -18,8 +18,7 @@ namespace FezStoreCS
         public ReceiptView(BasketList basket)
         {
             shopping_basket = basket;
-            shopping_basket.shopping_basket.CollectionChanged +=
-                new NotifyCollectionChangedEventHandler(this.UpdateList);
+            shopping_basket.AddedItem += new System.EventHandler(this.UpdateList);
             InitializeComponent();
             UpdateList();
         }

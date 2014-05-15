@@ -9,7 +9,10 @@ namespace FezStoreCS
 {
     public class BasketList
     {
-        public ObservableCollection<FezItem> shopping_basket;
+
+        public event System.EventHandler AddedItem;
+
+        private ObservableCollection<FezItem> shopping_basket;
 
         public BasketList()
         {
@@ -19,6 +22,7 @@ namespace FezStoreCS
         public void Add(FezSize size, FezStyle style)
         {
             shopping_basket.Add(new FezItem(size, style));
+            AddedItem(this, new EventArgs());
         }
 
         public int Count()
