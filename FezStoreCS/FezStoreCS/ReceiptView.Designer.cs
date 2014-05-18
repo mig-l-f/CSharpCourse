@@ -28,18 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.itemListTextBox = new System.Windows.Forms.RichTextBox();
             this.totalAmountLabel = new System.Windows.Forms.Label();
             this.totalAmountTextBox = new System.Windows.Forms.TextBox();
+            this.receiptList = new System.Windows.Forms.ListView();
             this.SuspendLayout();
-            // 
-            // itemListTextBox
-            // 
-            this.itemListTextBox.Location = new System.Drawing.Point(13, 13);
-            this.itemListTextBox.Name = "itemListTextBox";
-            this.itemListTextBox.Size = new System.Drawing.Size(259, 207);
-            this.itemListTextBox.TabIndex = 0;
-            this.itemListTextBox.Text = "";
             // 
             // totalAmountLabel
             // 
@@ -59,14 +51,22 @@
             this.totalAmountTextBox.TabIndex = 2;
             this.totalAmountTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
+            // receiptList
+            // 
+            this.receiptList.Location = new System.Drawing.Point(12, 12);
+            this.receiptList.Name = "receiptList";
+            this.receiptList.Size = new System.Drawing.Size(260, 196);
+            this.receiptList.TabIndex = 3;
+            this.receiptList.UseCompatibleStateImageBehavior = false;
+            // 
             // ReceiptView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 261);
+            this.Controls.Add(this.receiptList);
             this.Controls.Add(this.totalAmountTextBox);
             this.Controls.Add(this.totalAmountLabel);
-            this.Controls.Add(this.itemListTextBox);
             this.Name = "ReceiptView";
             this.Text = "ReceiptView";
             this.ResumeLayout(false);
@@ -76,9 +76,9 @@
 
         #endregion
 
-        private System.Windows.Forms.RichTextBox itemListTextBox;
         private System.Windows.Forms.Label totalAmountLabel;
         private System.Windows.Forms.TextBox totalAmountTextBox;
+        private System.Windows.Forms.ListView receiptList;
 
 
     }

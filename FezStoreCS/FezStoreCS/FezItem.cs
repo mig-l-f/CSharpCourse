@@ -32,5 +32,14 @@ namespace FezStoreCS
             fezItemText.Append(")\n");
             return fezItemText.ToString();
         }
+
+        public string shortDescription()
+        {
+            return fez_style_.ToString();
+        }
+        public string label()
+        {
+            return fez_size_.ToString();
+        }
     }
 }
