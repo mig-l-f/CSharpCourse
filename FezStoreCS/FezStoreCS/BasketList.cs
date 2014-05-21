@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Collections.ObjectModel;
+using System.IO;
 
 namespace FezStoreCS
 {
@@ -45,6 +46,20 @@ namespace FezStoreCS
             }
             return total_amount;
         }
+        public void ExportToCSV(String filename)
+        {
+            StreamWriter streamWriter = new StreamWriter(filename, false);
 
+            foreach (FezItem item in shopping_basket)
+            {
+                streamWriter.WriteLine(
+                    String.Format("{0},{1},{2,2:C}",
+                    item.shortDescription(),
+                    item.label(),
+                    item.getPrice()));
+            }
+
+            streamWriter.Close();
+        }
     }
 }

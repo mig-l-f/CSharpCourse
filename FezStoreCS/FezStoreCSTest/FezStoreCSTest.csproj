@@ -48,6 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="refCsvExport.csv" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FezStoreCS\FezStoreCS.csproj">

@@ -73,5 +73,18 @@ namespace FezStoreCS
             ReceiptView rv = new ReceiptView(myBasket);
             rv.Show();
         }
+
+        private void toCSVToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog toCSVDialog = new SaveFileDialog();
+            toCSVDialog.AddExtension = true;
+            toCSVDialog.DefaultExt = "csv";
+            DialogResult toCSVResult = toCSVDialog.ShowDialog(this);
+
+            if (toCSVResult == DialogResult.OK)
+            {
+                myBasket.ExportToCSV(toCSVDialog.FileName);
+            }
+        }
     }
 }
