@@ -23,8 +23,7 @@ namespace FezStoreCS
             receiptList.View = View.Details;
             receiptList.Columns.Add("Style", -2, HorizontalAlignment.Left);
             receiptList.Columns.Add("Size", -2, HorizontalAlignment.Right);
-            // TODO: Add a price column
-            // receiptList.Columns.Add("Price", -2, HorizontalAlignment.Left);
+            receiptList.Columns.Add("Price", -2, HorizontalAlignment.Left);
             UpdateList();
         }
 
@@ -40,7 +39,9 @@ namespace FezStoreCS
             {
                 receiptList.Items.Add(
                     new ListViewItem(
-                        new String[] { shopping_basket[x].shortDescription(), shopping_basket[x].label() }
+                        new String[] { shopping_basket[x].shortDescription(), 
+                                       shopping_basket[x].label(), 
+                                       String.Format("{0,2:C}", shopping_basket[x].getPrice()) }
                     )
                 );
             }
