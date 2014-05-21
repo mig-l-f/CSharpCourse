@@ -69,6 +69,7 @@
             this.Controls.Add(this.totalAmountLabel);
             this.Name = "ReceiptView";
             this.Text = "ReceiptView";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.ReceiptView_FormClosed);
             this.ResumeLayout(false);
             this.PerformLayout();
 

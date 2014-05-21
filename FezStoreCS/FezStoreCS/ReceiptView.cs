@@ -82,6 +82,11 @@ namespace FezStoreCS
             UpdateList();
         }
 
+        private void ReceiptView_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            shopping_basket.AddedItem -= this.UpdateList;
+        }
+
         
     }
 }
