@@ -46,7 +46,6 @@ namespace FezStoreCS
         public void init()
         {
             myBasket = new BasketList();
-            myBasket.AddedItem += (o, e) => { }; // Subscribing to event
         }
 
         [Test]
