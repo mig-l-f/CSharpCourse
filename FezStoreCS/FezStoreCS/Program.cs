@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.Integration;
+using FezStoreWpf;
 
 namespace FezStoreCS
 {
@@ -15,9 +17,12 @@ namespace FezStoreCS
         static void Main()
         {
             BasketList shopping_basket = new BasketList();
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1(shopping_basket));
+            //Application.EnableVisualStyles();
+            //Application.SetCompatibleTextRenderingDefault(false);
+            //Application.Run(new Form1(shopping_basket));
+
+            App myApp = new App();
+            myApp.Run();
         }
     }
 }

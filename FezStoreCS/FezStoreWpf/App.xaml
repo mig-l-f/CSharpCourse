@@ -1,0 +1,16 @@
+﻿<Application x:Class="FezStoreWpf.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+             <!--="FezSelection.xaml">-->
+
+    <Application.Resources>
+        <!-- Label Style -->
+        <Style x:Key="labelStyle" TargetType="{x:Type Label}">
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="FontFamily" Value="Trebuchet MS" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+        </Style>
+    </Application.Resources>
+</Application>

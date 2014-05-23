@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FezStoreCS", "FezStoreCS\Fe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FezStoreCSTest", "FezStoreCSTest\FezStoreCSTest.csproj", "{EE6E3C75-3A52-4F84-A991-B00197C6DA4B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FezStoreWpf", "FezStoreWpf\FezStoreWpf.csproj", "{74F6F656-A519-4E5D-8D7E-07F478A052EE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FezStoreBusiness", "FezStoreBusiness\FezStoreBusiness.csproj", "{BD685F82-0510-4E50-A741-4FA9360F8C2C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{EE6E3C75-3A52-4F84-A991-B00197C6DA4B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EE6E3C75-3A52-4F84-A991-B00197C6DA4B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EE6E3C75-3A52-4F84-A991-B00197C6DA4B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{74F6F656-A519-4E5D-8D7E-07F478A052EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{74F6F656-A519-4E5D-8D7E-07F478A052EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{74F6F656-A519-4E5D-8D7E-07F478A052EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{74F6F656-A519-4E5D-8D7E-07F478A052EE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BD685F82-0510-4E50-A741-4FA9360F8C2C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BD685F82-0510-4E50-A741-4FA9360F8C2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BD685F82-0510-4E50-A741-4FA9360F8C2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BD685F82-0510-4E50-A741-4FA9360F8C2C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

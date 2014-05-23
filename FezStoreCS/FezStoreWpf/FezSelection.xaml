@@ -1,0 +1,20 @@
+﻿<Window x:Class="FezStoreWpf.FezSelection"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Fez Store" Height="350" Width="525">
+    <Canvas Margin="10,0,10,10">
+        <Label Content="Style:"  Height="30" Canvas.Left="33" Canvas.Top="36" Width="99" />
+        <Label Content="Size:" Height="30" Canvas.Left="268" Canvas.Top="36" Width="70" />
+        <Label Content="Style Description:" Height="32" Canvas.Left="33" Canvas.Top="119" Width="134" />        
+        <Label Content="£ 0.00" Height="40" Canvas.Left="358" Canvas.Top="142" Width="94"/>
+
+        <TextBox Height="131" Canvas.Left="33" TextWrapping="Wrap" Text="TextBox" Canvas.Top="156" Width="283"/>
+
+        <ComboBox Height="28" Canvas.Left="33" Canvas.Top="71" Width="207"/>        
+        <ComboBox Height="28" Canvas.Left="268" Canvas.Top="71" Width="207"/>
+                
+        <Button Content="Add" Height="35" Canvas.Left="358" Canvas.Top="205" Width="117"/>
+        <Button Content="View Receipt" Height="35" Canvas.Left="358" Canvas.Top="252" Width="117"/>
+        
+    </Canvas>
+</Window>

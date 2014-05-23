@@ -51,9 +51,9 @@
     <None Include="refCsvExport.csv" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\FezStoreCS\FezStoreCS.csproj">
-      <Project>{258fa4b7-fb02-45ad-b944-9418fe0239b7}</Project>
-      <Name>FezStoreCS</Name>
+    <ProjectReference Include="..\FezStoreBusiness\FezStoreBusiness.csproj">
+      <Project>{bd685f82-0510-4e50-a741-4fa9360f8c2c}</Project>
+      <Name>FezStoreBusiness</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
