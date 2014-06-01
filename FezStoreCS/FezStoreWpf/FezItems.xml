@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Items>
+  <FezStyle ShortDescription="The Imperial" LongDescription="This is classy.\nLined in PVC." BasePrice="30.45" SupportsTassels="true" />
+  <FezStyle ShortDescription="The Royale" LongDescription="This is really classy.\nLined in mink." BasePrice="45.27" SupportsTassels="true" />
+  <FezStyle ShortDescription="The Continental" LongDescription="This is so damn classy.\nLined in gold plated mink." BasePrice="77.09" SupportsTassels="true" />
+  <FezSize Label="Baby (-10%)" PriceModifier="0.90" />
+  <FezSize Label="S" PriceModifier="1.00"/>
+  <FezSize Label="M" PriceModifier="1.00"/>
+  <FezSize Label="L" PriceModifier="1.00"/>
+  <FezSize Label="XL (+20%)" PriceModifier="1.20"/>
+</Items>
