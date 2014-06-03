@@ -9,18 +9,20 @@ namespace FezStoreCS
     public class FezItem
     {
 
-        private FezSize fez_size_;
-        private FezStyle fez_style_;
+        public FezSize fez_size_ { get; set; }
+        public FezStyle fez_style_ { get; set; }
+        public double price { get; set; }
 
         public FezItem(FezSize fez_size, FezStyle fez_style)
         {
             fez_size_ = fez_size;
             fez_style_ = fez_style;
+            price = Convert.ToDouble(fez_style_.basePrice) * Convert.ToDouble(fez_size_.priceModifier);
         }
 
         public double getPrice()
         {
-            return Convert.ToDouble(fez_style_.basePrice) * Convert.ToDouble(fez_size_.priceModifier);
+            return price;
         }
 
         public override string ToString()

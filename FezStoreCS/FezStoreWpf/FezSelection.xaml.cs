@@ -22,8 +22,12 @@ namespace FezStoreWpf
     /// </summary>
     public partial class FezSelection : Window
     {
-        public FezSelection()
+        private BasketList shopping_basket;
+
+        public FezSelection(BasketList shopping_basket)
         {
+            this.shopping_basket = shopping_basket;
+
             InitializeComponent();
 
             this.comboBoxStyle.SelectionChanged += new SelectionChangedEventHandler(UpdateOnStyleSelectionChanged);
@@ -56,6 +60,28 @@ namespace FezStoreWpf
             }
             catch(FormatException e){}
             catch (NullReferenceException e1) { }
+        }
+
+        private void viewReceiptButton_Click(object sender, RoutedEventArgs e)
+        {
+            ReceiptView rv = new ReceiptView(shopping_basket);
+            rv.Show();
+        }
+
+        private void addItemButton_Click(object sender, RoutedEventArgs e)
+        {
+            XmlElement fezStyleSelectedElement = this.comboBoxStyle.SelectedItem as XmlElement;
+            XmlElement fezSizeSelectedElement = this.comboBoxSize.SelectedItem as XmlElement;
+            try{
+                shopping_basket.Add(
+                    new FezSize(fezSizeSelectedElement.Attributes["Label"].Value as String,
+                                Convert.ToDouble(fezSizeSelectedElement.Attributes["PriceModifier"].Value as String)),
+                    new FezStyle(fezStyleSelectedElement.Attributes["LongDescription"].Value as String,
+                                fezStyleSelectedElement.Attributes["ShortDescription"].Value as String,
+                                Convert.ToDecimal(fezStyleSelectedElement.Attributes["BasePrice"].Value as String),
+                                Convert.ToBoolean(fezStyleSelectedElement.Attributes["SupportsTassels"].Value as String)));
+            }
+            catch (NullReferenceException exp1) { }
         }
     }
 }

@@ -10,6 +10,9 @@ using System.IO;
 
 namespace FezStoreCS
 {
+
+    /* Test Serialization !*/
+
     [TestFixture]
     public class FezTest
     {

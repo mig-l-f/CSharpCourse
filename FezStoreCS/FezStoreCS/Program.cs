@@ -21,7 +21,7 @@ namespace FezStoreCS
             //Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new Form1(shopping_basket));
 
-            App myApp = new App();
+            App myApp = new App(shopping_basket);
             myApp.Run();
         }
     }

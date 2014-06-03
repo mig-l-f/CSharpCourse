@@ -13,7 +13,7 @@ namespace FezStoreCS
 
         public event System.EventHandler AddedItem = delegate { };
 
-        private ObservableCollection<FezItem> shopping_basket;
+        public ObservableCollection<FezItem> shopping_basket;
 
         public BasketList()
         {

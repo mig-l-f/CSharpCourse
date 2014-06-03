@@ -44,8 +44,8 @@
             </TextBox.Style>
         </TextBox>
         
-        <Button Content="Add" Height="35" Canvas.Left="358" Canvas.Top="205" Width="117"/>
-        <Button Content="View Receipt" Height="35" Canvas.Left="358" Canvas.Top="252" Width="117"/>
+        <Button x:Name="addItemButton" Content="Add" Height="35" Canvas.Left="358" Canvas.Top="205" Width="117" Click="addItemButton_Click"/>
+        <Button x:Name="viewReceiptButton" Content="View Receipt" Height="35" Canvas.Left="358" Canvas.Top="252" Width="117" Click="viewReceiptButton_Click"/>
         
     </Canvas>
 </Window>

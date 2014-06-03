@@ -53,6 +53,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ReceiptView.xaml.cs">
+      <DependentUpon>ReceiptView.xaml</DependentUpon>
+    </Compile>
     <Page Include="FezSelection.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -65,6 +68,10 @@
       <DependentUpon>FezSelection.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="ReceiptView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
