@@ -56,7 +56,7 @@ namespace FezStoreWpf
             {
                 double price = Convert.ToDouble(fezStyleSelectedElement.Attributes["BasePrice"].Value as String)
                                 * Convert.ToDouble(fezSizeSelectedElement.Attributes["PriceModifier"].Value as String);
-                this.priceTextLabel.Content = String.Format("{0,2:C}", price);
+                this.priceTextLabel.Text = String.Format("{0,2:C}", price);
             }
             catch(FormatException e){}
             catch (NullReferenceException e1) { }

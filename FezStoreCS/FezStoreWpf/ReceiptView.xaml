@@ -3,31 +3,41 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Receipt View" Height="250" Width="300" Loaded="receiptViewWindow_Loaded">
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="207*"/>
-            <ColumnDefinition Width="85*"/>
-        </Grid.ColumnDefinitions>
-        <ListView HorizontalAlignment="Left" Height="149" Margin="19,16,0,0" 
-                  VerticalAlignment="Top" Width="255" Grid.ColumnSpan="2"
+        <Grid.RowDefinitions>
+            <RowDefinition Height="5*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <ListView HorizontalAlignment="Stretch" Height="Auto" Margin="20,20,20,20" 
+                  VerticalAlignment="Stretch" Width="Auto" Grid.Row="0" HorizontalContentAlignment="Stretch"
                   ItemsSource="{Binding}">
-            <ListView.ItemTemplate>
+            <ListView.ItemTemplate>              
                 <DataTemplate>
                     <Grid>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="100"/>
-                            <ColumnDefinition Width="75"/>
-                            <ColumnDefinition Width="50"/>
+                            <ColumnDefinition Width="4*"/>
+                            <ColumnDefinition Width="3*"/>
+                            <ColumnDefinition Width="2*"/>
                         </Grid.ColumnDefinitions>
 
-                        <TextBlock Grid.Column="0" Text="{Binding fez_style_.shortDescription}" />
-                        <TextBlock Grid.Column="1" Text="{Binding fez_size_.label}" />
-                        <TextBlock Grid.Column="2" Text="{Binding price, StringFormat=£{0,2:F}}" Unloaded="TextBlock_Unloaded"/>
+                        <TextBlock Grid.Column="0" Width="Auto" TextAlignment="Left" Text="{Binding fez_style_.shortDescription}" />
+                        <TextBlock Grid.Column="1" Width="Auto" TextAlignment="Left" Text="{Binding fez_size_.label}" />
+                        <TextBlock Grid.Column="2" Width="Auto" TextAlignment="Right" Text="{Binding price, StringFormat=£{0,2:F}}" Unloaded="TextBlock_Unloaded"/>
                     </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <Label Content="Total Amount:" HorizontalAlignment="Left" Margin="103,180,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="totalAmountTextBox" HorizontalAlignment="Right" Height="23" Margin="0,183,18,13" TextWrapping="Wrap" Text="£ 0.00" VerticalAlignment="Center" Width="81" TextAlignment="Right" BorderThickness="0" Grid.ColumnSpan="2"/>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="0" HorizontalAlignment="Right" Height="Auto" Width="Auto" Margin="0,0,10,0" VerticalAlignment="Center" 
+                   Content=""/>
+            <Label Grid.Column="1" HorizontalAlignment="Right" Height="Auto" Width="Auto" Margin="0,0,20,0" VerticalAlignment="Center"
+                   Content="Total Amount:" />
+            <TextBox Grid.Column="2" x:Name="totalAmountTextBox" HorizontalAlignment="Right" Height="Auto" Width="Auto" Margin="0,0,20,0" TextWrapping="Wrap" Text="£ 0.00" VerticalAlignment="Center" TextAlignment="Right" BorderThickness="0" />
+        </Grid>
 
     </Grid>
 </Window>
