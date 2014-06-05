@@ -12,7 +12,10 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Microsoft.Win32;
+using System.IO;
 using System.Xml;
+using System.Xml.Serialization;
 using FezStoreCS;
 
 namespace FezStoreWpf
@@ -82,6 +85,31 @@ namespace FezStoreWpf
                                 Convert.ToBoolean(fezStyleSelectedElement.Attributes["SupportsTassels"].Value as String)));
             }
             catch (NullReferenceException exp1) { }
+        }
+
+        private void xmlExportButton_Click(object sender, RoutedEventArgs e)
+        {
+            SaveFileDialog toXMLDialog = new SaveFileDialog();
+            toXMLDialog.AddExtension = true;
+            toXMLDialog.DefaultExt = "xml";
+            toXMLDialog.Filter =
+            "XML files (*.xml)|*.xml|Text files (*.txt)|*.txt|All files (*.*)|*.*";
+            if (toXMLDialog.ShowDialog(this) == true)
+            {
+                StreamWriter fileStream;
+                fileStream = new StreamWriter(toXMLDialog.OpenFile());
+
+                try
+                {
+                    XmlSerializer xmlSerializer = new XmlSerializer(typeof(BasketList));
+                    xmlSerializer.Serialize(fileStream, shopping_basket);
+                }
+                catch (InvalidOperationException inv)
+                {
+                    Console.Write(inv.ToString());
+                }
+                fileStream.Close();
+            }            
         }
     }
 }

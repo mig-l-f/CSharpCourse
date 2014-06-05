@@ -3,15 +3,22 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace FezStoreCS
 {
     public class FezStyle
     {
-        public String longDescription { get; set; }
+        [XmlAttribute("ShortDescription")]
         public String shortDescription { get; set; }
+        [XmlAttribute("LongDescription")]
+        public String longDescription { get; set; }
+        [XmlAttribute("BasePrice")]
         public Decimal basePrice { get; set; }
+        [XmlAttribute("SupportsTassels")]
         public Boolean supportsTassels { get; set; }
+
+        public FezStyle() { }
 
         public FezStyle(String longDescription, String shortDescription, Decimal basePrice, Boolean supportsTassels)
         {

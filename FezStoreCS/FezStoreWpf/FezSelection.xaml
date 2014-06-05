@@ -30,7 +30,7 @@
                 <Menu FontSize="14">
                     <MenuItem Header="File">
                         <MenuItem Header="Export">
-                            <MenuItem Header="XML..." x:Name="xmlExportButton"/>
+                            <MenuItem Header="XML..." x:Name="xmlExportButton" Click="xmlExportButton_Click"/>
                         </MenuItem>
                     </MenuItem>
                 </Menu>

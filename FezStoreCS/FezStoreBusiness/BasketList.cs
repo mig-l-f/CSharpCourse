@@ -5,15 +5,18 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Collections.ObjectModel;
 using System.IO;
+using System.Xml.Serialization;
 
 namespace FezStoreCS
 {
+    [Serializable()]
     public class BasketList
     {
-
+        [field: NonSerialized()]
         public event System.EventHandler AddedItem = delegate { };
-
-        public ObservableCollection<FezItem> shopping_basket;
+        [XmlArray("ShoppingBasket")]
+        [XmlArrayItem("FezItem")]
+        public ObservableCollection<FezItem> shopping_basket { get; set; }
 
         public BasketList()
         {

@@ -3,15 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace FezStoreCS
 {
     public class FezItem
     {
-
+        [XmlElement("FezSize")]
         public FezSize fez_size_ { get; set; }
+        [XmlElement("FezStyle")]
         public FezStyle fez_style_ { get; set; }
+        [XmlElement("Price")]
         public double price { get; set; }
+
+        public FezItem() { }
 
         public FezItem(FezSize fez_size, FezStyle fez_style)
         {
