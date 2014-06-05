@@ -99,17 +99,27 @@ namespace FezStoreWpf
                 StreamWriter fileStream;
                 fileStream = new StreamWriter(toXMLDialog.OpenFile());
 
-                try
-                {
-                    XmlSerializer xmlSerializer = new XmlSerializer(typeof(BasketList));
-                    xmlSerializer.Serialize(fileStream, shopping_basket);
-                }
-                catch (InvalidOperationException inv)
-                {
-                    Console.Write(inv.ToString());
-                }
+                XmlSerializer xmlSerializer = new XmlSerializer(typeof(BasketList));
+                xmlSerializer.Serialize(fileStream, shopping_basket);
                 fileStream.Close();
             }            
+        }
+
+        private void xmlImportButton_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog fromXMLDialog = new OpenFileDialog();
+            fromXMLDialog.AddExtension = true;
+            fromXMLDialog.DefaultExt = "xml";
+            fromXMLDialog.Filter = "XML files (*.xml)|*.xml|Text files (*.txt)|*.txt|All files (*.*)|*.*";
+            if (fromXMLDialog.ShowDialog(this) == true)
+            {
+                StreamReader fileStream;
+                fileStream = new StreamReader(fromXMLDialog.OpenFile());
+
+                XmlSerializer xmlSerializer = new XmlSerializer(typeof(BasketList));
+                shopping_basket = (BasketList)xmlSerializer.Deserialize(fileStream);
+                fileStream.Close();
+            }
         }
     }
 }

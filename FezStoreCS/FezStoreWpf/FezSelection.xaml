@@ -32,6 +32,9 @@
                         <MenuItem Header="Export">
                             <MenuItem Header="XML..." x:Name="xmlExportButton" Click="xmlExportButton_Click"/>
                         </MenuItem>
+                        <MenuItem Header="Import">
+                            <MenuItem Header="XML..." x:Name="xmlImportButton" Click="xmlImportButton_Click" />
+                        </MenuItem>
                     </MenuItem>
                 </Menu>
             </ToolBar>
