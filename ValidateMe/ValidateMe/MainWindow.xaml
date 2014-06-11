@@ -1,0 +1,24 @@
+﻿<Window x:Class="ValidateMe.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Height="350" Width="525">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <Label Grid.Row="0" Grid.Column="0" Content="Name: "/>
+        <TextBox x:Name="tbName"  Grid.Row="0" Grid.Column="1" TextChanged="tbName_TextChanged"/>
+
+        <Label Grid.Row="1" Grid.Column="0" Content="Telephone: "/>
+        <TextBox x:Name="tbPhone" Grid.Row="1" Grid.Column="1" TextChanged="tbPhone_TextChanged"/>
+
+        <Label Grid.Row="2" Grid.Column="0" Content="Email: "/>
+        <TextBox x:Name="tbEmail"  Grid.Row="2" Grid.Column="1" TextChanged="tbEmail_TextChanged"/>
+    </Grid>
+</Window>
