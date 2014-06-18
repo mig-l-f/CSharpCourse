@@ -13,5 +13,16 @@ namespace ValidateMe
     /// </summary>
     public partial class App : Application
     {
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            base.OnStartup(e);
+
+            Contact contact = new Contact();
+            ContactViewModel contactViewModel = new ContactViewModel(contact);
+
+            MainWindow window = new MainWindow();
+            window.DataContext = contactViewModel;
+            window.Show();
+        }
     }
 }

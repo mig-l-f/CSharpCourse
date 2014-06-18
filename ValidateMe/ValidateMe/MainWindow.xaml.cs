@@ -22,7 +22,7 @@ namespace ValidateMe
     /// </summary>
     public partial class MainWindow : Window
     {
-        private const string namePattern = @"^(([a-zA-Z]*){0,}\s{0,})*([a-zA-Z]*){0,}$";
+        private const string namePattern = @"^[A-Za-z][A-Za-z ]*[A-Za-z]$";
         private const string phonePattern = @"0\d{3}-\d{7}";
         private const string emailPattern = @"";
 
