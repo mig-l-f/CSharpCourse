@@ -7,7 +7,7 @@ using System.Collections.ObjectModel;
 using System.IO;
 using System.Xml.Serialization;
 
-namespace FezStoreCS
+namespace FezStore.Model
 {
     [Serializable()]
     public class BasketList

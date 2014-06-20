@@ -7,7 +7,7 @@
     <ProjectGuid>{74F6F656-A519-4E5D-8D7E-07F478A052EE}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>FezStoreWpf</RootNamespace>
+    <RootNamespace>FezStore</RootNamespace>
     <AssemblyName>FezStoreWpf</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -34,7 +34,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject>FezStoreWpf.App</StartupObject>
+    <StartupObject>FezStore.App</StartupObject>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />

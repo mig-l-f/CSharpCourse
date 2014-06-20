@@ -5,9 +5,10 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
-using FezStoreCS;
+using FezStore.Model;
+using FezStore.View;
 
-namespace FezStoreWpf
+namespace FezStore
 {
     /// <summary>
     /// Interaction logic for App.xaml

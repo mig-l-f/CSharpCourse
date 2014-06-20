@@ -16,9 +16,9 @@ using Microsoft.Win32;
 using System.IO;
 using System.Xml;
 using System.Xml.Serialization;
-using FezStoreCS;
+using FezStore.Model;
 
-namespace FezStoreWpf
+namespace FezStore.View
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml

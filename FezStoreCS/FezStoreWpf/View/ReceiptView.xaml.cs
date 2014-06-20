@@ -11,9 +11,9 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using FezStoreCS;
+using FezStore.Model;
 
-namespace FezStoreWpf
+namespace FezStore.View
 {
     /// <summary>
     /// Interaction logic for ReceiptView.xaml

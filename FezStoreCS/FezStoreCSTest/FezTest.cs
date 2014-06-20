@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 using NUnit.Framework;
 using System.Security.Cryptography;
 using System.IO;
+using FezStore.Model;
 
 
-namespace FezStoreCS
+namespace FezStore.Test
 {
 
     /* Test Serialization !*/
