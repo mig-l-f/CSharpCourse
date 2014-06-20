@@ -33,6 +33,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>FezStoreWpf.App</StartupObject>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -53,10 +56,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="ReceiptView.xaml.cs">
+    <Compile Include="Model\BasketList.cs" />
+    <Compile Include="Model\FezItem.cs" />
+    <Compile Include="Model\FezSize.cs" />
+    <Compile Include="Model\FezStyle.cs" />
+    <Compile Include="View\ReceiptView.xaml.cs">
       <DependentUpon>ReceiptView.xaml</DependentUpon>
     </Compile>
-    <Page Include="FezSelection.xaml">
+    <Page Include="View\FezSelection.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -64,11 +71,11 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="FezSelection.xaml.cs">
+    <Compile Include="View\FezSelection.xaml.cs">
       <DependentUpon>FezSelection.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="ReceiptView.xaml">
+    <Page Include="View\ReceiptView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -101,15 +108,12 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\FezStoreBusiness\FezStoreBusiness.csproj">
-      <Project>{bd685f82-0510-4e50-a741-4fa9360f8c2c}</Project>
-      <Name>FezStoreBusiness</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="FezItems.xml">
+    <Resource Include="Data\FezItems.xml">
       <SubType>Designer</SubType>
     </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ViewModel\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

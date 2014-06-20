@@ -8,21 +8,21 @@ using FezStoreWpf;
 
 namespace FezStoreCS
 {
-    static class Program
-    {
-        /// <summary>
-        /// The main entry point for the application.
-        /// </summary>
-        [STAThread]
-        static void Main()
-        {
-            BasketList shopping_basket = new BasketList();
-            //Application.EnableVisualStyles();
-            //Application.SetCompatibleTextRenderingDefault(false);
-            //Application.Run(new Form1(shopping_basket));
+    //static class Program
+    //{
+    //    /// <summary>
+    //    /// The main entry point for the application.
+    //    /// </summary>
+    //    [STAThread]
+    //    static void Main()
+    //    {
+    //        BasketList shopping_basket = new BasketList();
+    //        //Application.EnableVisualStyles();
+    //        //Application.SetCompatibleTextRenderingDefault(false);
+    //        //Application.Run(new Form1(shopping_basket));
 
-            App myApp = new App(shopping_basket);
-            myApp.Run();
-        }
-    }
+    //        App myApp = new App(shopping_basket);
+    //        myApp.Run();
+    //    }
+    //}
 }

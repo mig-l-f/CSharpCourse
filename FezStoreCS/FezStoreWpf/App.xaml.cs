@@ -34,4 +34,16 @@ namespace FezStoreWpf
             window.Show();
         }
     }
+
+    static class Program
+    {
+        [STAThread]
+        static void Main()
+        {
+            BasketList basket = new BasketList();
+            App myApp = new App(basket);
+            myApp.Run();
+        }
+    }
+
 }
