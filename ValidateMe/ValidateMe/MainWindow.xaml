@@ -20,6 +20,11 @@
                 </Trigger>
             </Style.Triggers>            
         </Style>
+        <Style x:Key="errorMessageText" TargetType="{x:Type Label}">            
+            <Setter Property="Foreground" Value="Red"/>
+        </Style>
+
+
     </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
@@ -28,23 +33,54 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
+            <RowDefinition Height="25"/>
             <RowDefinition Height="auto"/>
+            <RowDefinition Height="25"/>
             <RowDefinition Height="auto"/>
+            <RowDefinition Height="25"/>
         </Grid.RowDefinitions>
         <Label Grid.Row="0" Grid.Column="0" Content="Name: "/>
         <TextBox x:Name="tbName"  Grid.Row="0" Grid.Column="1"
                  Text="{Binding Path=Name, ValidatesOnDataErrors=True}"
-                 Validation.ErrorTemplate="{StaticResource validationTemplate}"
+                 Validation.ErrorTemplate="{x:Null}"
                  Style="{StaticResource textBoxInError}"/>
-                
-        <Label Grid.Row="1" Grid.Column="0" Content="Telephone: "/>        
-        <TextBox x:Name="tbPhone" Grid.Row="1" Grid.Column="1"
+        <ContentPresenter 
+            Grid.Row="1" Grid.Column="1"
+            Content="{Binding ElementName=tbName, Path=(Validation.Errors).CurrentItem}"
+                HorizontalAlignment="Right">
+            <ContentPresenter.ContentTemplate>
+                <DataTemplate>
+                    <Label Style="{StaticResource errorMessageText}" Content="{Binding Path=ErrorContent}"/>
+                </DataTemplate>
+            </ContentPresenter.ContentTemplate>
+        </ContentPresenter>
+        
+        <Label Grid.Row="2" Grid.Column="0" Content="Telephone: "/>        
+        <TextBox x:Name="tbPhone" Grid.Row="2" Grid.Column="1"
                  Text="{Binding Path=Telephone, ValidatesOnDataErrors=True}"
-                 Validation.ErrorTemplate="{StaticResource validationTemplate}"/>
-                
-        <Label Grid.Row="2" Grid.Column="0" Content="Email: "/>
-        <TextBox x:Name="tbEmail"  Grid.Row="2" Grid.Column="1" 
+                 Validation.ErrorTemplate="{x:Null}"/>
+        <ContentPresenter
+            Grid.Row="3" Grid.Column="1" HorizontalAlignment="Right"
+            Content="{Binding ElementName=tbPhone, Path=(Validation.Errors).CurrentItem}">
+            <ContentPresenter.ContentTemplate>
+                <DataTemplate>
+                    <Label Style="{StaticResource errorMessageText}" Content="{Binding Path=ErrorContent}" />
+                </DataTemplate>
+            </ContentPresenter.ContentTemplate>
+        </ContentPresenter> 
+        
+        <Label Grid.Row="4" Grid.Column="0" Content="Email: "/>
+        <TextBox x:Name="tbEmail"  Grid.Row="4" Grid.Column="1" 
                  Text="{Binding Path=Email, ValidatesOnDataErrors=True}"
-                 Validation.ErrorTemplate="{StaticResource validationTemplate}"/>        
+                 Validation.ErrorTemplate="{x:Null}"/>
+        <ContentPresenter
+            Grid.Row="5" Grid.Column="1" HorizontalAlignment="Right"
+            Content="{Binding ElementName=tbEmail, Path=(Validation.Errors).CurrentItem}">
+            <ContentPresenter.ContentTemplate>
+                <DataTemplate>
+                    <Label Style="{StaticResource errorMessageText}" Content="{Binding Path=ErrorContent}" />
+                </DataTemplate>
+            </ContentPresenter.ContentTemplate>
+        </ContentPresenter>
     </Grid>
 </Window>
