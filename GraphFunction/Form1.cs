@@ -87,13 +87,13 @@ namespace GraphFunction
         }
 
         // y = 12 * Sin(3 * x) / (1 + |x|)
-        private static float Function1(float x)
+        private float Function1(float x)
         {
             return (float)(12 * Math.Sin(3 * x) / (1 + Math.Abs(x)));
         }
 
         // y = |20 * Cos(|x|) / (|x| + 1)|
-        private static float Function2(float x)
+        private float Function2(float x)
         {
             x = Math.Abs(x);
             if (x < 0.001) return 20;
@@ -101,7 +101,7 @@ namespace GraphFunction
         }
 
         // y = Ax^6 + Bx^5 + Cx^4 + Dx^3 + Ex^2 + Fx + G.
-        private static float Function3(float x)
+        private float Function3(float x)
         {
             const float A = -0.0003f;
             const float B = -0.0024f;
