@@ -19,5 +19,9 @@ namespace GraphFunction.Model
             const float G = 3f;
             return (((((A * x + B) * x + C) * x + D) * x + E) * x + F) * x + G;
         }
+        public override string ToString()
+        {
+            return @"Ax^6 + Bx^5 + Cx^4 + Dx^3 + Ex^2 + Fx + G";
+        }
     }
 }

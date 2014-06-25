@@ -8,5 +8,9 @@ namespace GraphFunction.Model
         {
             return (float)(12 * Math.Sin(3 * x) / (1 + Math.Abs(x)));
         }
+        public override string ToString()
+        {
+            return @"12 * Sin(3 * x) / (1 + |x|)";
+        }
     }
 }

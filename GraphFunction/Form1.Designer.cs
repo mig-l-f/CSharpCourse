@@ -37,10 +37,6 @@
             // 
             this.equationComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.equationComboBox.FormattingEnabled = true;
-            this.equationComboBox.Items.AddRange(new object[] {
-            "12 * Sin(3 * x) / (1 + |x|)",
-            "|20 * Cos(|x|) / (|x| + 1)|",
-            "Ax^6 + Bx^5 + Cx^4 + Dx^3 + Ex^2 + Fx + G"});
             this.equationComboBox.Location = new System.Drawing.Point(12, 13);
             this.equationComboBox.Name = "equationComboBox";
             this.equationComboBox.Size = new System.Drawing.Size(260, 21);

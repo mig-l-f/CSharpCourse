@@ -14,5 +14,9 @@ namespace GraphFunction.Model
             if (x < 0.001) return 20;
             return (float)Math.Abs(20 * Math.Cos(x) / (x + 1));
         }
+        public override string ToString()
+        {
+            return @"|20 * Cos(|x|) / (|x| + 1)|";
+        }
     }
 }

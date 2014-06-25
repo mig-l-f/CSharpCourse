@@ -9,10 +9,19 @@ namespace GraphFunction.ViewModel
 {
     public class DrawGraphViewModel
     {
-        private List<Function> availableFunctions = new List<Function>() 
-        {
-            new Function1(), new Function2(), new Function3()
-        };
+        private List<Function> availableFunctions = new List<Function>();
+
+        public List<Function> AvailableFunctions 
+        { 
+            get 
+            {
+                return availableFunctions;
+            }
+            set 
+            {
+                availableFunctions = value;
+            } 
+        }
 
     }
 }

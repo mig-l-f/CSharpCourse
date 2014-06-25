@@ -9,15 +9,15 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 using System.Drawing.Drawing2D;
+using GraphFunction.ViewModel;
 
 namespace GraphFunction
 {
     public partial class Form1 : Form
     {
-        public Form1()
-        {
-            InitializeComponent();
-        }
+        #region Class Members
+        
+        private DrawGraphViewModel _viewModel;
 
         // Delegate for the function to draw.
         private delegate float FunctionDelegate(float x);
@@ -25,10 +25,27 @@ namespace GraphFunction
         // The function we are currently drawing.
         private FunctionDelegate TheFunction;
 
+        #endregion
+
+        public Form1(DrawGraphViewModel viewModel)
+        {
+            _viewModel = viewModel;
+
+            InitializeComponent();
+
+            PopulateFunctionChoices();
+        }
+
         // Select the first equation.
         private void Form1_Load(object sender, EventArgs e)
         {
             equationComboBox.SelectedIndex = 0;
+        }
+
+        private void PopulateFunctionChoices()
+        {
+            foreach (var function in _viewModel.AvailableFunctions)
+                equationComboBox.Items.Add(function);
         }
 
         // Draw the currently selected function.
@@ -86,48 +103,13 @@ namespace GraphFunction
             }
         }
 
-        // y = 12 * Sin(3 * x) / (1 + |x|)
-        private float Function1(float x)
-        {
-            return (float)(12 * Math.Sin(3 * x) / (1 + Math.Abs(x)));
-        }
-
-        // y = |20 * Cos(|x|) / (|x| + 1)|
-        private float Function2(float x)
-        {
-            x = Math.Abs(x);
-            if (x < 0.001) return 20;
-            return (float)Math.Abs(20 * Math.Cos(x) / (x + 1));
-        }
-
-        // y = Ax^6 + Bx^5 + Cx^4 + Dx^3 + Ex^2 + Fx + G.
-        private float Function3(float x)
-        {
-            const float A = -0.0003f;
-            const float B = -0.0024f;
-            const float C = 0.02f;
-            const float D = 0.09f;
-            const float E = -0.5f;
-            const float F = 0.3f;
-            const float G = 3f;
-            return (((((A * x + B) * x + C) * x + D) * x + E) * x + F) * x + G;
-        }
 
         // Select the appropriate function and redraw.
         private void equationComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            switch (equationComboBox.SelectedIndex)
-            {
-                case 0:
-                    TheFunction = Function1;
-                    break;
-                case 1:
-                    TheFunction = Function2;
-                    break;
-                case 2:
-                    TheFunction = Function3;
-                    break;
-            }
+      
+            TheFunction = _viewModel.AvailableFunctions[equationComboBox.SelectedIndex].calculate;
+
             graphPictureBox.Refresh();
         }
     }
