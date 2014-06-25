@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Hometowns>
+  <Hometown>
+    <City>Philadelphia</City>
+    <State>PA</State>
+    <CityCode>0</CityCode>
+  </Hometown>
+  <Hometown>
+    <City>Ewing</City>
+    <State>NJ</State>
+    <CityCode>0</CityCode>
+  </Hometown>
+  <Hometown>
+    <City>Havertown</City>
+    <State>PA</State>
+    <CityCode>0</CityCode>
+  </Hometown>
+  <Hometown>
+    <City>Fort Washington</City>
+    <State>PA</State>
+    <CityCode>0</CityCode>
+  </Hometown>
+  <Hometown>
+    <City>Trenton</City>
+    <State>PA</State>
+    <CityCode>0</CityCode>
+  </Hometown>
+</Hometowns>
