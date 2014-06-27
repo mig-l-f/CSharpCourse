@@ -60,11 +60,29 @@
     <Compile Include="Model\FezItem.cs" />
     <Compile Include="Model\FezSize.cs" />
     <Compile Include="Model\FezStyle.cs" />
+    <Compile Include="Properties\Strings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Strings.resx</DependentUpon>
+    </Compile>
     <Compile Include="ViewModel\CommandViewModel.cs" />
-    <Compile Include="ViewModel\MainWindowView.cs" />
+    <Compile Include="ViewModel\ShoppingBasketViewModel.cs" />
+    <Compile Include="ViewModel\StoreViewModel.cs" />
+    <Compile Include="ViewModel\MainWindowViewModel.cs" />
+    <Compile Include="ViewModel\RelayCommand.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
+    <Compile Include="ViewModel\WorkspaceViewModel.cs" />
+    <Compile Include="View\MainWindowView.xaml.cs">
+      <DependentUpon>MainWindowView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\ReceiptView.xaml.cs">
       <DependentUpon>ReceiptView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ShoppingBasketView.xaml.cs">
+      <DependentUpon>ShoppingBasketView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\StoreView.xaml.cs">
+      <DependentUpon>StoreView.xaml</DependentUpon>
     </Compile>
     <Page Include="View\FezSelection.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -78,7 +96,23 @@
       <DependentUpon>FezSelection.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="View\MainWindowView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\MainWindowViewResources.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\ReceiptView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ShoppingBasketView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\StoreView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -100,6 +134,10 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Strings.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Strings.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

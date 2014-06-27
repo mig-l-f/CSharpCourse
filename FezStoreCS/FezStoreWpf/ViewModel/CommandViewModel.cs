@@ -3,7 +3,7 @@ using System.Windows.Input;
 
 namespace FezStore.ViewModel
 {
-    class CommandViewModel : ViewModelBase
+    public class CommandViewModel : ViewModelBase
     {
         public CommandViewModel(string displayName, ICommand command) 
         { 

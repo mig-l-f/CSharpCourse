@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FezStore.ViewModel
 {
-    class MainWindowView
+    public class ShoppingBasketViewModel : WorkspaceViewModel
     {
     }
 }

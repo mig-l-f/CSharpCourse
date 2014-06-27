@@ -1,0 +1,38 @@
+﻿<Window x:Class="FezStore.View.MainWindowView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="{Binding Path=DisplayName}" 
+        MinHeight="300" MinWidth="300"
+        Width="650" Height="420">
+    <Window.Resources>
+        <ResourceDictionary Source="MainWindowViewResources.xaml" />
+    </Window.Resources>
+    <DockPanel>
+        <DockPanel DockPanel.Dock="Top" KeyboardNavigation.TabNavigation="None">
+            <Menu KeyboardNavigation.TabNavigation="Cycle">
+                <MenuItem Header="File" />                
+            </Menu>
+        </DockPanel>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="4" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Border 
+                Grid.Column="0" 
+                Width="170">
+                <HeaderedContentControl 
+                    Header="Navigation" 
+                    Style="{StaticResource MainHeaderContentControlStyle}" />                    
+            </Border>
+            <Border 
+                Grid.Column="2">
+                <HeaderedContentControl 
+                    Header="Store" 
+                    Style="{StaticResource MainHeaderContentControlStyle}"/>
+            </Border>
+        </Grid>
+    </DockPanel>
+    
+</Window>
