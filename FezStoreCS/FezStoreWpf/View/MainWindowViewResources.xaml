@@ -8,9 +8,9 @@
         <view:StoreView />
     </DataTemplate>
     
-    <!--<DataTemplate DataType="{x:Type viewmodel:ShoppingBasketViewModel}">
-        <view:ReceiptView />
-    </DataTemplate>-->
+    <DataTemplate DataType="{x:Type viewmodel:ShoppingBasketViewModel}">
+        <view:ShoppingBasketView />
+    </DataTemplate>
     
     <Style x:Key="MainHeaderContentControlStyle" TargetType="{x:Type HeaderedContentControl}">
         <Setter Property="HeaderTemplate">
@@ -74,10 +74,10 @@
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
                     <TextBlock Margin="2,6">
-            <Hyperlink Command="{Binding Path=Command}">
-              <TextBlock Text="{Binding Path=DisplayName}" />
-            </Hyperlink>
-          </TextBlock>
+                        <Hyperlink Command="{Binding Path=Command}">
+                            <TextBlock Text="{Binding Path=DisplayName}" />
+                        </Hyperlink>
+                    </TextBlock>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>

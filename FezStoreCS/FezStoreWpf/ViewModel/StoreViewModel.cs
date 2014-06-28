@@ -119,7 +119,6 @@ namespace FezStore.ViewModel
         private void AddCurrentFezItemToBasket()
         {
             _shopping_basket.Add(SelectedFezSize, SelectedFezStyle);
-            Console.WriteLine("Added new item");
         }
 
         #endregion
