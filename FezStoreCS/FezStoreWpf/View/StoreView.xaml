@@ -3,9 +3,97 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:viewmodel="clr-namespace:FezStore.ViewModel"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
-    <Grid>
-            
+             d:DesignHeight="350" d:DesignWidth="525">
+    <UserControl.Resources>
+        <viewmodel:ConverterFezStyle x:Key="ConverterFezStyle" />
+        <viewmodel:ConverterFezSize x:Key="ConverterFezSize" />
+    </UserControl.Resources>
+    <Grid Margin="10,0,10,10">
+        <Grid.Resources>
+            <XmlDataProvider x:Key="FezItemsSource" XPath="Items" Source="../Data/FezItems.xml" />
+
+            <DataTemplate x:Key="fezStyleTemplate">
+                <Label Content="{Binding XPath=@ShortDescription}" />
+            </DataTemplate>
+
+            <DataTemplate x:Key="fezSizeTemplate">
+                <Label Content="{Binding XPath=@Label}" />
+            </DataTemplate>
+
+            <DataTemplate x:Key="fezDescriptionTemplate">
+                <Label Content="{Binding XPath=@LongDescription}" />
+            </DataTemplate>
+        </Grid.Resources>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="3*" />
+            <RowDefinition Height="6*" />
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" Margin="10,10,10,10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height=".7*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Label Grid.Row="0" Content="Style:" VerticalAlignment="Bottom" HorizontalAlignment="Left"
+                       Margin="30,0,0,0" FontSize="14" />
+                <ComboBox x:Name="comboBoxStyle" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Stretch" Margin="30,0,20,0" 
+                          ItemsSource="{Binding Source={StaticResource FezItemsSource}, XPath=FezStyle}" 
+                          ItemTemplate="{StaticResource fezStyleTemplate}" SelectedIndex="0"
+                          SelectedItem="{Binding Path=SelectedFezStyle, Mode=OneWayToSource, Converter={StaticResource ConverterFezStyle}}" />
+                          <!--SelectedValuePath="FezStyle"
+                          SelectedValue="{Binding Path=SelectedFezStyle, Converter={StaticResource ConverterFezStyle}}" -->
+                          
+            </Grid>
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height=".7*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Label Grid.Row="0" Content="Size:" VerticalAlignment="Bottom" HorizontalAlignment="Left"
+                       Margin="30,0,0,0" FontSize="14" />
+                <ComboBox x:Name="comboBoxSize" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Stretch" Margin="30,0,20,0" 
+                          ItemsSource="{Binding Source={StaticResource FezItemsSource}, XPath=FezSize}" 
+                          ItemTemplate="{StaticResource fezSizeTemplate}" SelectedIndex="0" 
+                          SelectedItem="{Binding Path=SelectedFezSize, Mode=OneWayToSource, Converter={StaticResource ConverterFezSize}}"/>
+            </Grid>
+        </Grid>
+        <Grid Grid.Row="1" Margin="10,10,10,10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height=".7*" />
+                    <RowDefinition Height="3*"/>
+                </Grid.RowDefinitions>
+                <Label Grid.Row="0" Content="Style Description:" FontSize="14" 
+                       VerticalAlignment="Center" HorizontalAlignment="Left" 
+                       Margin="10,0,0,0" />
+                <TextBox x:Name="styleDescriptionTextBox" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                         FontSize="14" Margin="10,0,10,0" TextWrapping="Wrap"
+                         Text="{Binding Path=LongDescription, Mode=OneWay}"/>
+            </Grid>
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height=".7*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <TextBlock x:Name="priceTextLabel" Grid.Row="1" FontSize="14" VerticalAlignment="Center"
+                       HorizontalAlignment="Stretch" Margin="25,0,25,0" TextAlignment="Right"
+                       Text="{Binding Path=Price, StringFormat=£ {0:0.00}}"/>
+                <Button x:Name="addItemButton" Grid.Row="2" Content="Add" FontSize="14" Margin="25,5,25,5" 
+                        Command="{Binding Path=AddToBasket}"/>
+                <Button x:Name="viewReceiptButton" Grid.Row="3" Content="View Receipt" FontSize="14" Margin="25,5,25,5" />
+            </Grid>
+        </Grid>
     </Grid>
 </UserControl>

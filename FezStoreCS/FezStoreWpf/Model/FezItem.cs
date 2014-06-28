@@ -9,12 +9,15 @@ namespace FezStore.Model
 {
     public class FezItem
     {
+        #region Fields
+        
         [XmlElement("FezSize")]
         public FezSize fez_size_ { get; set; }
         [XmlElement("FezStyle")]
         public FezStyle fez_style_ { get; set; }
         [XmlElement("Price")]
         public double price { get; set; }
+        #endregion
 
         public FezItem() { }
 
@@ -25,9 +28,29 @@ namespace FezStore.Model
             price = Convert.ToDouble(fez_style_.basePrice) * Convert.ToDouble(fez_size_.priceModifier);
         }
 
+        #region Properties
+        
+        public double Price
+        {
+            get
+            {
+                if (fez_size_ != null && fez_style_ != null)
+                    return Convert.ToDouble(fez_style_.basePrice) * Convert.ToDouble(fez_size_.priceModifier);
+                else
+                    return 0.0;
+            }
+            set
+            {
+                price = Convert.ToDouble(fez_style_.basePrice) * Convert.ToDouble(fez_size_.priceModifier);
+            }
+        }
+        #endregion
+
+
         public double getPrice()
         {
-            return price;
+            return Convert.ToDouble(fez_style_.basePrice) * Convert.ToDouble(fez_size_.priceModifier);
+            //return price;
         }
 
         public override string ToString()

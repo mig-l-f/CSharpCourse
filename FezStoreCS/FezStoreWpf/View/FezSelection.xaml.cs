@@ -61,8 +61,8 @@ namespace FezStore.View
                                 * Convert.ToDouble(fezSizeSelectedElement.Attributes["PriceModifier"].Value as String);
                 this.priceTextLabel.Text = String.Format("{0,2:C}", price);
             }
-            catch(FormatException e){}
-            catch (NullReferenceException e1) { }
+            catch(FormatException){}
+            catch (NullReferenceException) { }
         }
 
         private void viewReceiptButton_Click(object sender, RoutedEventArgs e)
@@ -84,7 +84,7 @@ namespace FezStore.View
                                 Convert.ToDecimal(fezStyleSelectedElement.Attributes["BasePrice"].Value as String),
                                 Convert.ToBoolean(fezStyleSelectedElement.Attributes["SupportsTassels"].Value as String)));
             }
-            catch (NullReferenceException exp1) { }
+            catch (NullReferenceException) { }
         }
 
         private void xmlExportButton_Click(object sender, RoutedEventArgs e)

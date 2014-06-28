@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using FezStore.Model;
 using FezStore.View;
+using FezStore.ViewModel;
 
 namespace FezStore
 {
@@ -31,7 +32,11 @@ namespace FezStore
         {
             base.OnStartup(e);
 
-            FezSelection window = new FezSelection(shopping_basket);
+            BasketList shopping_basket = new BasketList();
+            //FezSelection window = new FezSelection(shopping_basket);
+            MainWindowView window = new MainWindowView();
+            var viewModel = new MainWindowViewModel(shopping_basket);
+            window.DataContext = viewModel;
             window.Show();
         }
     }

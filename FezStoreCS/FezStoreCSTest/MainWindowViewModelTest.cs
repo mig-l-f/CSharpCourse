@@ -8,7 +8,7 @@ using NUnit.Framework;
 using FezStore.ViewModel;
 using FezStore.Properties;
 
-namespace FezStoreCSTest
+namespace FezStore.Test
 {
     [TestFixture]
     public class MainWindowViewModelTest

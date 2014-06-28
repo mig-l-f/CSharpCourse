@@ -8,9 +8,9 @@
         <view:StoreView />
     </DataTemplate>
     
-    <DataTemplate DataType="{x:Type viewmodel:ShoppingBasketViewModel}">
-        <view:ShoppingBasketView />
-    </DataTemplate>
+    <!--<DataTemplate DataType="{x:Type viewmodel:ShoppingBasketViewModel}">
+        <view:ReceiptView />
+    </DataTemplate>-->
     
     <Style x:Key="MainHeaderContentControlStyle" TargetType="{x:Type HeaderedContentControl}">
         <Setter Property="HeaderTemplate">
@@ -53,19 +53,33 @@
             </Setter.Value>
         </Setter>
     </Style>
-   
-    <DataTemplate x:Key="WorkspacesTemplate">
-        <TabControl 
-            IsSynchronizedWithCurrentItem="True" 
-            ItemsSource="{Binding}"
-            ItemTemplate="{StaticResource ClosableItemTemplate}"
-            Margin="4" />
-    </DataTemplate>
-    
+     
     <DataTemplate x:Key="ClosableTabItemTemplate">
         <DockPanel Width="120">
             <Button Command="{Binding Path=CloseCommand}" Content="X" DockPanel.Dock="Right" Width="16" Height="16" />
             <ContentPresenter Content="{Binding Path=DisplayName}" />
         </DockPanel>
+    </DataTemplate>
+
+    <DataTemplate x:Key="WorkspacesTemplate">
+        <TabControl 
+            IsSynchronizedWithCurrentItem="True" 
+            ItemsSource="{Binding}"
+            ItemTemplate="{StaticResource ClosableTabItemTemplate}"
+            Margin="4" />
+    </DataTemplate>
+
+    <DataTemplate x:Key="CommandsTemplate">
+        <ItemsControl IsTabStop="False" ItemsSource="{Binding}" Margin="6,2">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Margin="2,6">
+            <Hyperlink Command="{Binding Path=Command}">
+              <TextBlock Text="{Binding Path=DisplayName}" />
+            </Hyperlink>
+          </TextBlock>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
     </DataTemplate>
 </ResourceDictionary>

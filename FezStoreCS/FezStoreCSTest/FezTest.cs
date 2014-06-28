@@ -81,18 +81,18 @@ namespace FezStore.Test
             Assert.AreEqual(myBasket.GetTotalAmount(), (double)(2 * 1.3 * 15.0));
         }
 
-        [Test]
-        public void testExportBasketToCSV()
-        {
-            FezSize fez_size = new FezSize("M", 1.00);
-            FezStyle fez_style = new FezStyle("This is classy.\nLined in PVC.", "The Imperial", 30.45m, true);
-            myBasket.Add(fez_size, fez_style);
-            String filename = @"csvExport.txt";
-            String referenceFile = @"../../refCsvExport.csv";
-            myBasket.ExportToCSV(filename);
-            Assert.True(compare2FilesByHash(filename, referenceFile));
-            File.Delete(filename);
-        }
+        //[Test]
+        //public void testExportBasketToCSV()
+        //{
+        //    FezSize fez_size = new FezSize("M", 1.00);
+        //    FezStyle fez_style = new FezStyle("This is classy.\nLined in PVC.", "The Imperial", 30.45m, true);
+        //    myBasket.Add(fez_size, fez_style);
+        //    String filename = @"csvExport.txt";
+        //    String referenceFile = @"../../refCsvExport.csv";
+        //    myBasket.ExportToCSV(filename);
+        //    Assert.True(compare2FilesByHash(filename, referenceFile));
+        //    File.Delete(filename);
+        //}
 
         private bool compare2FilesByString(String file1, String file2)
         {

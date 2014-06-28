@@ -24,12 +24,16 @@
                 Width="170">
                 <HeaderedContentControl 
                     Header="Navigation" 
+                    Content="{Binding Path=Commands}"
+                    ContentTemplate="{StaticResource CommandsTemplate}"
                     Style="{StaticResource MainHeaderContentControlStyle}" />                    
             </Border>
             <Border 
                 Grid.Column="2">
                 <HeaderedContentControl 
-                    Header="Store" 
+                    Header="Store"
+                    Content="{Binding Path=Workspaces}"
+                    ContentTemplate="{StaticResource WorkspacesTemplate}"
                     Style="{StaticResource MainHeaderContentControlStyle}"/>
             </Border>
         </Grid>
