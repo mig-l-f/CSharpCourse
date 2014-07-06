@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Diagnostics;
+using LINQSamples.Model;
 
 namespace LINQSamples
 {
@@ -14,6 +15,8 @@ namespace LINQSamples
             MethodBasedSelect();
 
             MethodBasedAggregateFunctions();
+
+            Console.Read();
         }
 
         #region Method Based Queries
@@ -689,62 +692,6 @@ namespace LINQSamples
 
         #endregion Method Based Queries
 
-    }
-
-    class Hometown
-    {
-        public string City { get; set; }
-        public string State { get; set; }
-        public string CityCode { get; set; }
-    }
-
-    class Person
-    {
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public string Address1 { get; set; }
-        public string City { get; set; }
-        public string State { get; set; }
-        public string Zip { get; set; }
-    }
-
-    class Employee
-    {
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public int StateId { get; set; }
-        public string City { get; set; }
-        public string State { get; set; }
-    }
-        
-    class State : IEquatable<State>
-    {
-        public int StateId { get; set; }
-        public string StateName { get; set; }
-
-        public bool Equals(State other)
-        {
-            if (Object.ReferenceEquals(this, other))
-            {
-                return true;
-            }
-            else
-            {
-                if (StateId == other.StateId && StateName == StateName)
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-            }
-        }
-
-        public override int GetHashCode()
-        {
-            return StateId.GetHashCode() ^ StateName.GetHashCode();
-        }
-    }      
+    }             
 
 }
