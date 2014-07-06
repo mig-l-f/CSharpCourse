@@ -8,7 +8,6 @@ using System.Xml.Serialization;
 
 namespace LINQSamples.ViewModel
 {
-    [Serializable]
     public class ListOfHometowns
     {
         [NonSerialized]
