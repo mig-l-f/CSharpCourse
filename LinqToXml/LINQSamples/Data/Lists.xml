@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Lists>
+  <Hometowns>
+    <Hometown>
+      <City>Philadelphia</City>
+      <State>PA</State>
+      <CityCode></CityCode>
+    </Hometown>
+    <Hometown>
+      <City>Ewing</City>
+      <State>NJ</State>
+      <CityCode>5678</CityCode>
+    </Hometown>
+    <Hometown>
+      <City>Havertown</City>
+      <State>PA</State>
+      <CityCode>1234</CityCode>
+    </Hometown>
+    <Hometown>
+      <City>Fort Washington</City>
+      <State>PA</State>
+      <CityCode>9012</CityCode>
+    </Hometown>
+    <Hometown>
+      <City>Trenton</City>
+      <State>NJ</State>
+      <CityCode></CityCode>
+    </Hometown>
+  </Hometowns>
+  <People>
+    <Person>
+      <FirstName>John</FirstName>
+      <LastName>Smith</LastName>
+      <Address1>First St</Address1>
+      <City>Havertown</City>
+      <State>PA</State>
+      <Zip>19084</Zip>
+    </Person>
+    <Person>
+      <FirstName>Jane</FirstName>
+      <LastName>Doe</LastName>
+      <Address1>Second St</Address1>
+      <City>Ewing</City>
+      <State>NJ</State>
+      <Zip>08560</Zip>
+    </Person>
+    <Person>
+      <FirstName>Jack</FirstName>
+      <LastName>Jones</LastName>
+      <Address1>Third St</Address1>
+      <City>Fort Washington</City>
+      <State>PA</State>
+      <Zip>19034</Zip>
+    </Person>
+  </People>
+  <Employees>
+    <Employee>
+      <FirstName>John</FirstName>
+      <LastName>Smith</LastName>
+      <StateId>1</StateId>
+      <City>Havertown</City>
+      <State>PA</State>
+    </Employee>
+    <Employee>
+      <FirstName>Jane</FirstName>
+      <LastName>Doe</LastName>
+      <StateId>2</StateId>
+      <City>Ewing</City>
+      <State>NJ</State>
+    </Employee>
+    <Employee>
+      <FirstName>Jack</FirstName>
+      <LastName>Jones</LastName>
+      <StateId>1</StateId>
+      <City>Fort Washington</City>
+      <State>PA</State>
+    </Employee>
+    <Employee>
+      <FirstName>Sue</FirstName>
+      <LastName>Smith</LastName>
+      <StateId>3</StateId>
+      <City></City>
+      <State></State>
+    </Employee>
+  </Employees>
+  <States>
+    <State>
+      <StateId>1</StateId>
+      <StateName>PA</StateName>
+    </State>
+    <State>
+      <StateId>2</StateId>
+      <StateName>NJ</StateName>
+    </State>
+    <State>
+      <StateId>3</StateId>
+      <StateName>NY</StateName>
+    </State>
+  </States>
+</Lists>
+

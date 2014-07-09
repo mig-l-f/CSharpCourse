@@ -5,16 +5,25 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Diagnostics;
 using LINQSamples.Model;
+using System.Xml.Linq;
 
 namespace LINQSamples
 {
     class Program
     {
+        static XElement root = null;
+
         static void Main(string[] args)
         {
-            MethodBasedSelect();
+            root = XElement.Load("../../Data/Lists.xml");
 
-            MethodBasedAggregateFunctions();
+            //MethodBasedSelect();
+
+            //MethodBasedAggregateFunctions();
+            ////MethodBasedProjectionV1();
+            DistinctCodeLab();
+            Console.WriteLine(" ");
+            XmlDistinctCodeLab();
 
             Console.Read();
         }
@@ -116,77 +125,123 @@ namespace LINQSamples
             }
         }
 
-        static void MethodBasedOrderByStateThenCity()
+        //static void MethodBasedOrderByStateThenCity()
+        //{
+        //    var hometowns = new List<Hometown>() 
+        //    {
+        //        new Hometown() { City = "Philadelphia", State = "PA" },
+        //        new Hometown() { City = "Ewing", State = "NJ" },
+        //        new Hometown() { City = "Havertown", State = "PA" },
+        //        new Hometown() { City = "Fort Washington", State = "PA" },                
+        //        new Hometown() { City = "Trenton", State = "NJ" }
+        //    };
+
+        //    var orderedHometowns = hometowns.OrderBy(h => h.State).ThenBy(h => h.City);
+
+        //    foreach (Hometown hometown in orderedHometowns)
+        //    {
+        //        Console.WriteLine(hometown.City + ", " + hometown.State);
+        //    }
+
+        //}
+
+        static void XmlMethodBasedOrderByStateThenCity()
         {
-            var hometowns = new List<Hometown>() 
-            {
-                new Hometown() { City = "Philadelphia", State = "PA" },
-                new Hometown() { City = "Ewing", State = "NJ" },
-                new Hometown() { City = "Havertown", State = "PA" },
-                new Hometown() { City = "Fort Washington", State = "PA" },                
-                new Hometown() { City = "Trenton", State = "NJ" }
-            };
+            IEnumerable<XElement> orderedHometows =
+                from element in root.Element("Hometowns").Elements("Hometown")
+                let city = (string)element.Element("City")
+                let state = (string)element.Element("State")
+                orderby state, city
+                select element;            
 
-            var orderedHometowns = hometowns.OrderBy(h => h.State).ThenBy(h => h.City);
-                                   
-            foreach (Hometown hometown in orderedHometowns)
-            {
-                Console.WriteLine(hometown.City + ", " + hometown.State);
-            }
+            foreach (XElement el in orderedHometows)
+                Console.WriteLine(el.Element("City").Value + ", " + el.Element("State").Value);
+        }
 
-}
+        //static void MethodBasedProjectionV1()
+        //{
+        //    var people = new List<Person>()
+        //    {
+        //        new Person() { FirstName = "John", LastName = "Smith", Address1 = "First St", City = "Havertown", State = "PA", Zip = "19084" },
+        //        new Person() { FirstName = "Jane", LastName = "Doe", Address1 = "Second St", City = "Ewing", State = "NJ", Zip = "08560" },
+        //        new Person() { FirstName = "Jack", LastName = "Jones", Address1 = "Third St", City = "Ft Washington", State = "PA", Zip = "19034" }
+        //    };
 
-        static void MethodBasedProjectionV1()
-        {
-            var people = new List<Person>()
-            {
-                new Person() { FirstName = "John", LastName = "Smith", Address1 = "First St", City = "Havertown", State = "PA", Zip = "19084" },
-                new Person() { FirstName = "Jane", LastName = "Doe", Address1 = "Second St", City = "Ewing", State = "NJ", Zip = "08560" },
-                new Person() { FirstName = "Jack", LastName = "Jones", Address1 = "Third St", City = "Ft Washington", State = "PA", Zip = "19034" }
-            };
-
-            var lastNames = people.Select(p => p.LastName);
+        //    var lastNames = people.Select(p => p.LastName);
                             
+        //    foreach (string lastName in lastNames)
+        //    {
+        //        Console.WriteLine(lastName);
+        //    }
+        //}
+
+        static void XmlMethodBasedProjectionV1()
+        {
+            var lastNames =
+                from element in root.Element("People").Elements("Person")
+                let lastName = (string)element.Element("LastName")
+                select lastName;
+
             foreach (string lastName in lastNames)
             {
                 Console.WriteLine(lastName);
             }
+
         }
 
-        static void MethodBasedProjectionV2()
-        {
-            var people = new List<Person>()
-            {
-                new Person() 
-                { 
-                    FirstName = "John", 
-                    LastName = "Smith", 
-                    Address1 = "First St", 
-                    City = "Havertown", 
-                    State = "PA", 
-                    Zip = "19084" 
-                },
-                new Person() 
-                { 
-                    FirstName = "Jane", 
-                    LastName = "Doe", 
-                    Address1 = "Second St", 
-                    City = "Ewing", 
-                    State = "NJ", 
-                    Zip = "08560" 
-                },
-                new Person() 
-                { 
-                    FirstName = "Jack", 
-                    LastName = "Jones", 
-                    Address1 = "Third St", 
-                    City = "Ft Washington", 
-                    State = "PA", 
-                    Zip = "19034" 
-                }
-            };
+        //static void MethodBasedProjectionV2()
+        //{
+        //    var people = new List<Person>()
+        //    {
+        //        new Person() 
+        //        { 
+        //            FirstName = "John", 
+        //            LastName = "Smith", 
+        //            Address1 = "First St", 
+        //            City = "Havertown", 
+        //            State = "PA", 
+        //            Zip = "19084" 
+        //        },
+        //        new Person() 
+        //        { 
+        //            FirstName = "Jane", 
+        //            LastName = "Doe", 
+        //            Address1 = "Second St", 
+        //            City = "Ewing", 
+        //            State = "NJ", 
+        //            Zip = "08560" 
+        //        },
+        //        new Person() 
+        //        { 
+        //            FirstName = "Jack", 
+        //            LastName = "Jones", 
+        //            Address1 = "Third St", 
+        //            City = "Ft Washington", 
+        //            State = "PA", 
+        //            Zip = "19034" 
+        //        }
+        //    };
 
-            var names = people.Select(p => new { p.FirstName, p.LastName });
+        //    var names = people.Select(p => new { p.FirstName, p.LastName });
+
+        //    foreach (var name in names)
+        //    {
+        //        Console.WriteLine(name.FirstName + ", " + name.LastName);
+        //    }
+        //}
+
+        static void XmlMethodBasedProjectionV2()
+        {
+            var names = 
+                from element in root.Element("People").Elements("Person")
+                let firstName = (string)element.Element("FirstName")
+                let lastName = (string)element.Element("LastName")
+                orderby lastName ascending
+                select new
+                {
+                   FirstName = firstName, 
+                   LastName = lastName
+                };
 
             foreach (var name in names)
             {
@@ -194,62 +249,95 @@ namespace LINQSamples
             }
         }
 
-        static void MethodBasedProjectionV3()
+        //static void MethodBasedProjectionV3()
+        //{
+        //    var people = new List<Person>()
+        //    {
+        //        new Person() { FirstName = "John", LastName = "Smith", Address1 = "First St", City = "Havertown", State = "PA", Zip = "19084" },
+        //        new Person() { FirstName = "Jane", LastName = "Doe", Address1 = "Second St", City = "Ewing", State = "NJ", Zip = "08560" },
+        //        new Person() { FirstName = "Jack", LastName = "Jones", Address1 = "Third St", City = "Ft Washington", State = "PA", Zip = "19034" }
+        //    };
+
+        //    var names = people.Select(p => new { First = p.FirstName, Last = p.LastName });
+
+        //    foreach (var name in names)
+        //    {
+        //        Console.WriteLine(name.First + ", " + name.Last);
+        //    }
+        //}
+
+        static void XmlMethodBasedProjectionV3()
         {
-            var people = new List<Person>()
-            {
-                new Person() { FirstName = "John", LastName = "Smith", Address1 = "First St", City = "Havertown", State = "PA", Zip = "19084" },
-                new Person() { FirstName = "Jane", LastName = "Doe", Address1 = "Second St", City = "Ewing", State = "NJ", Zip = "08560" },
-                new Person() { FirstName = "Jack", LastName = "Jones", Address1 = "Third St", City = "Ft Washington", State = "PA", Zip = "19034" }
-            };
-
-            var names = people.Select(p => new { First = p.FirstName, Last = p.LastName });
-
+            var names =
+                from p in root.Element("People").Elements("Person")
+                select new
+                {
+                    First = (string)p.Element("FirstName"),
+                    Last = (string)p.Element("LastName")
+                };
             foreach (var name in names)
             {
                 Console.WriteLine(name.First + ", " + name.Last);
             }
         }
 
-        static void MethodBasedProjectionV4()
+        //static void MethodBasedProjectionV4()
+        //{
+        //    var employees = new List<Employee>()
+        //    {
+        //        new Employee() 
+        //        { 
+        //            FirstName = "John", 
+        //            LastName = "Smith", 
+        //            StateId = 1 
+        //        },
+        //        new Employee() 
+        //        { 
+        //            FirstName = "Jane", 
+        //            LastName = "Doe", 
+        //            StateId = 2 
+        //        },
+        //        new Employee() 
+        //        { 
+        //            FirstName = "John", 
+        //            LastName = "Smith", 
+        //            StateId = 1 
+        //        }
+        //    };
+
+        //    List<State> states = new List<State>()
+        //    {
+        //        new State()
+        //        {
+        //            StateId = 1,
+        //            StateName = "PA"
+        //        },
+        //        new State()
+        //        {
+        //            StateId = 2,
+        //            StateName = "NJ"
+        //        }
+        //    };
+
+        //    var employeeByState = employees.SelectMany(e => states.Where(s => e.StateId == s.StateId).Select(s => new { e.LastName, s.StateName }));
+
+        //    foreach (var employee in employeeByState)
+        //    {
+        //        Console.WriteLine(employee.LastName + ", " + employee.StateName);
+        //    }
+        //}
+
+        static void XmlMethodBasedProjectionV4()
         {
-            var employees = new List<Employee>()
-            {
-                new Employee() 
-                { 
-                    FirstName = "John", 
-                    LastName = "Smith", 
-                    StateId = 1 
-                },
-                new Employee() 
-                { 
-                    FirstName = "Jane", 
-                    LastName = "Doe", 
-                    StateId = 2 
-                },
-                new Employee() 
-                { 
-                    FirstName = "John", 
-                    LastName = "Smith", 
-                    StateId = 1 
-                }
-            };
-
-            List<State> states = new List<State>()
-            {
-                new State()
+            var employeeByState =
+                from e in root.Element("Employees").Elements("Employee")
+                from s in root.Element("States").Elements("State")
+                where (int)e.Element("StateId") == (int)s.Element("StateId")
+                select new
                 {
-                    StateId = 1,
-                    StateName = "PA"
-                },
-                new State()
-                {
-                    StateId = 2,
-                    StateName = "NJ"
-                }
-            };
-
-            var employeeByState = employees.SelectMany(e => states.Where(s => e.StateId == s.StateId).Select(s => new { e.LastName, s.StateName }));
+                    LastName = (string)e.Element("LastName"),
+                    StateName = (string)s.Element("StateName")
+                };
 
             foreach (var employee in employeeByState)
             {
@@ -257,238 +345,325 @@ namespace LINQSamples
             }
         }
 
-        static void MethodBasedJoin()
+        //static void MethodBasedJoin()
+        //{
+        //    var employees = new List<Employee>()
+        //    {
+        //        new Employee() 
+        //        { 
+        //            FirstName = "John", 
+        //            LastName = "Smith", 
+        //            StateId = 1 
+        //        },
+        //        new Employee() 
+        //        { 
+        //            FirstName = "Jane", 
+        //            LastName = "Doe", 
+        //            StateId = 2 
+        //        },
+        //        new Employee() 
+        //        { 
+        //            FirstName = "John", 
+        //            LastName = "Smith", 
+        //            StateId = 1 
+        //        }
+        //    };
+
+        //    var states = new List<State>()
+        //    {
+        //        new State()
+        //        {
+        //            StateId = 1,
+        //            StateName = "PA"
+        //        },
+        //        new State()
+        //        {
+        //            StateId = 2,
+        //            StateName = "NJ"
+        //        }
+        //    };
+
+        //    var employeeByState = employees.Join(states, 
+        //                                         e => e.StateId, 
+        //                                         s => s.StateId, 
+        //                                         (e, s) => new { e.LastName, s.StateName });
+
+        //    foreach (var employee in employeeByState)
+        //    {
+        //        Console.WriteLine(employee.LastName + ", " + employee.StateName);
+        //    }
+        //}
+
+        static void XmlMethodBasedJoin()
         {
-            var employees = new List<Employee>()
-            {
-                new Employee() 
-                { 
-                    FirstName = "John", 
-                    LastName = "Smith", 
-                    StateId = 1 
-                },
-                new Employee() 
-                { 
-                    FirstName = "Jane", 
-                    LastName = "Doe", 
-                    StateId = 2 
-                },
-                new Employee() 
-                { 
-                    FirstName = "John", 
-                    LastName = "Smith", 
-                    StateId = 1 
-                }
-            };
-
-            var states = new List<State>()
-            {
-                new State()
-                {
-                    StateId = 1,
-                    StateName = "PA"
-                },
-                new State()
-                {
-                    StateId = 2,
-                    StateName = "NJ"
-                }
-            };
-
-            var employeeByState = employees.Join(states, 
-                                                 e => e.StateId, 
-                                                 s => s.StateId, 
-                                                 (e, s) => new { e.LastName, s.StateName });
-
+            var employeeByState =
+                from e in root.Element("Employees").Elements("Employee")
+                join s in root.Element("States").Elements("State") on (int)e.Element("StateId") equals (int)s.Element("StateId")
+                select new {
+                    LastName = (string)e.Element("LastName"),
+                    StateName = (string)s.Element("StateName")
+                };
             foreach (var employee in employeeByState)
             {
                 Console.WriteLine(employee.LastName + ", " + employee.StateName);
             }
         }
 
-        static void MethodBasedOuterJoin()
+        //static void MethodBasedOuterJoin()
+        //{
+        //    var employees = new List<Employee>()
+        //    {
+        //        new Employee() 
+        //        { 
+        //            FirstName = "John", 
+        //            LastName = "Smith", 
+        //            StateId = 1 
+        //        },
+        //        new Employee() 
+        //        { 
+        //            FirstName = "Jane", 
+        //            LastName = "Doe", 
+        //            StateId = 2 
+        //        },
+        //        new Employee() 
+        //        { 
+        //            FirstName = "Jack", 
+        //            LastName = "Jones", 
+        //            StateId = 1 
+        //        },
+        //        new Employee() 
+        //        { 
+        //            FirstName = "Sue", 
+        //            LastName = "Smith", 
+        //            StateId = 3 
+        //        }
+        //    };
+
+        //    var states = new List<State>()
+        //    {
+        //        new State()
+        //        {
+        //            StateId = 1,
+        //            StateName = "PA"
+        //        },
+        //        new State()
+        //        {
+        //            StateId = 2,
+        //            StateName = "NJ"
+        //        }
+        //    };
+
+        //    var employeeByState = employees.GroupJoin(states,
+        //                                                e => e.StateId,
+        //                                                s => s.StateId,
+        //                                                (e, employeeGroup) => employeeGroup.Select(s => new { LastName = e.LastName, StateName = s.StateName }).DefaultIfEmpty(new { LastName = e.LastName, StateName = "" })).SelectMany(e => e);
+
+        //    foreach (var employee in employeeByState)
+        //    {
+        //        Console.WriteLine(employee.LastName + ", " + employee.StateName);
+        //    }
+        //}
+
+        static void XmlMethodBasedOuterJoin()
         {
-            var employees = new List<Employee>()
-            {
-                new Employee() 
-                { 
-                    FirstName = "John", 
-                    LastName = "Smith", 
-                    StateId = 1 
-                },
-                new Employee() 
-                { 
-                    FirstName = "Jane", 
-                    LastName = "Doe", 
-                    StateId = 2 
-                },
-                new Employee() 
-                { 
-                    FirstName = "Jack", 
-                    LastName = "Jones", 
-                    StateId = 1 
-                },
-                new Employee() 
-                { 
-                    FirstName = "Sue", 
-                    LastName = "Smith", 
-                    StateId = 3 
-                }
-            };
-
-            var states = new List<State>()
-            {
-                new State()
+            var employeeByState =
+                from e in root.Element("Employees").Elements("Employee")
+                join s in root.Element("States").Elements("State") on (int)e.Element("StateId") equals (int)s.Element("StateId") into selected_states
+                from subset_states in selected_states.DefaultIfEmpty()
+                select new
                 {
-                    StateId = 1,
-                    StateName = "PA"
-                },
-                new State()
-                {
-                    StateId = 2,
-                    StateName = "NJ"
-                }
-            };
-
-            var employeeByState = employees.GroupJoin(states,
-                                                        e => e.StateId,
-                                                        s => s.StateId,
-                                                        (e, employeeGroup) => employeeGroup.Select(s => new { LastName = e.LastName, StateName = s.StateName }).DefaultIfEmpty(new { LastName = e.LastName, StateName = "" })).SelectMany(e => e);
-
+                    LastName = (string)e.Element("LastName"),
+                    StateName = (subset_states == null ? String.Empty : (string)subset_states.Element("StateName"))
+                };
             foreach (var employee in employeeByState)
             {
                 Console.WriteLine(employee.LastName + ", " + employee.StateName);
             }
         }
 
-        static void MethodBasedCompositeKey()
+        //static void MethodBasedCompositeKey()
+        //{
+        //    var employees = new List<Employee>()
+        //    {
+        //        new Employee() 
+        //        { 
+        //            FirstName = "John", 
+        //            LastName = "Smith", 
+        //            City = "Havertown",
+        //            State = "PA"
+        //        },
+        //        new Employee() 
+        //        { 
+        //            FirstName = "Jane", 
+        //            LastName = "Doe", 
+        //            City = "Ewing",
+        //            State = "NJ"
+        //        },
+        //        new Employee() 
+        //        { 
+        //            FirstName = "Jack", 
+        //            LastName = "Jones", 
+        //            City = "Fort Washington",
+        //            State = "PA"
+        //        }
+        //    };
+
+        //    var hometowns = new List<Hometown>()
+        //    {
+        //        new Hometown()
+        //        {
+        //            City = "Havertown",
+        //            State = "PA",
+        //            CityCode = "1234"
+        //        },
+        //        new Hometown()
+        //        {
+        //            City = "Ewing",
+        //            State = "NJ",
+        //            CityCode = "5678"
+        //        },
+        //        new Hometown()
+        //        {
+        //            City = "Fort Washington",
+        //            State = "PA",
+        //            CityCode = "9012"
+        //        }
+        //    };
+
+        //    var employeeByState = employees.Join(hometowns,
+        //                                            e => new { City = e.City, State = e.State },
+        //                                            h => new { City = h.City, State = h.State },
+        //                                            (e, h) => new { e.LastName, h.CityCode });
+
+        //    foreach (var employee in employeeByState)
+        //    {
+        //        Console.WriteLine(employee.LastName + ", " + employee.CityCode);
+        //    }
+        //}
+
+        static void XmlMethodBasedCompositeKey()
         {
-            var employees = new List<Employee>()
-            {
-                new Employee() 
-                { 
-                    FirstName = "John", 
-                    LastName = "Smith", 
-                    City = "Havertown",
-                    State = "PA"
-                },
-                new Employee() 
-                { 
-                    FirstName = "Jane", 
-                    LastName = "Doe", 
-                    City = "Ewing",
-                    State = "NJ"
-                },
-                new Employee() 
-                { 
-                    FirstName = "Jack", 
-                    LastName = "Jones", 
-                    City = "Fort Washington",
-                    State = "PA"
-                }
-            };
-
-            var hometowns = new List<Hometown>()
-            {
-                new Hometown()
+            var employeeByState =
+                from e in root.Element("Employees").Elements("Employee")
+                join h in root.Element("Hometowns").Elements("Hometown") on new { City = (string)e.Element("City"), State = (string)e.Element("State") } equals new { City = (string)h.Element("City"), State = (string)h.Element("State") }
+                select new
                 {
-                    City = "Havertown",
-                    State = "PA",
-                    CityCode = "1234"
-                },
-                new Hometown()
-                {
-                    City = "Ewing",
-                    State = "NJ",
-                    CityCode = "5678"
-                },
-                new Hometown()
-                {
-                    City = "Fort Washington",
-                    State = "PA",
-                    CityCode = "9012"
-                }
-            };
-
-            var employeeByState = employees.Join(hometowns,
-                                                    e => new { City = e.City, State = e.State },
-                                                    h => new { City = h.City, State = h.State },
-                                                    (e, h) => new { e.LastName, h.CityCode });
-
+                    LastName = (string)e.Element("LastName"),
+                    CityCode = (int)h.Element("CityCode")
+                };
+                
+             
             foreach (var employee in employeeByState)
             {
                 Console.WriteLine(employee.LastName + ", " + employee.CityCode);
             }
         }
 
-        static void MethodBasedGroupV1()
-        {
-            var employees = new List<Employee>()
-            {
-                new Employee() 
-                { 
-                    FirstName = "John", 
-                    LastName = "Smith", 
-                    City = "Havertown",
-                    State = "PA"
-                },
-                new Employee() 
-                { 
-                    FirstName = "Jane", 
-                    LastName = "Doe", 
-                    City = "Ewing",
-                    State = "NJ"
-                },
-                new Employee() 
-                { 
-                    FirstName = "Jack", 
-                    LastName = "Jones", 
-                    City = "Fort Washington",
-                    State = "PA"
-                }
-            };
+        //static void MethodBasedGroupV1()
+        //{
+        //    var employees = new List<Employee>()
+        //    {
+        //        new Employee() 
+        //        { 
+        //            FirstName = "John", 
+        //            LastName = "Smith", 
+        //            City = "Havertown",
+        //            State = "PA"
+        //        },
+        //        new Employee() 
+        //        { 
+        //            FirstName = "Jane", 
+        //            LastName = "Doe", 
+        //            City = "Ewing",
+        //            State = "NJ"
+        //        },
+        //        new Employee() 
+        //        { 
+        //            FirstName = "Jack", 
+        //            LastName = "Jones", 
+        //            City = "Fort Washington",
+        //            State = "PA"
+        //        }
+        //    };
 
-            var employeesByState = employees.GroupBy(e => e.State);
+        //    var employeesByState = employees.GroupBy(e => e.State);
                                    
-            foreach (var employeeGroup in employeesByState)
-            {
-                Console.WriteLine(employeeGroup.Key + ": " + employeeGroup.Count());
+        //    foreach (var employeeGroup in employeesByState)
+        //    {
+        //        Console.WriteLine(employeeGroup.Key + ": " + employeeGroup.Count());
 
-                foreach (var employee in employeeGroup)
-                {
-                    Console.WriteLine(employee.LastName + ", " + employee.State);
-                }
-            }
-        }
+        //        foreach (var employee in employeeGroup)
+        //        {
+        //            Console.WriteLine(employee.LastName + ", " + employee.State);
+        //        }
+        //    }
+        //}
 
-        static void MethodBasedGroupV2()
+        static void XmlMethodBasedGroupV1()
         {
-            List<Employee> employees = new List<Employee>()
-            {
-                new Employee() 
-                { 
-                    FirstName = "John", 
-                    LastName = "Smith", 
-                    City = "Havertown",
-                    State = "PA"
-                },
-                new Employee() 
-                { 
-                    FirstName = "Jane", 
-                    LastName = "Doe", 
-                    City = "Ewing",
-                    State = "NJ"
-                },
-                new Employee() 
-                { 
-                    FirstName = "Jack", 
-                    LastName = "Jones", 
-                    City = "Fort Washington",
-                    State = "PA"
-                }
-            };
+            var employeesByState =
+                from e in root.Element("Employees").Elements("Employee")
+                group e by (string)e.Element("State") into employeeGroup
+                select employeeGroup;
 
-            var employeesByState = employees.GroupBy(e => new { e.City, e.State });
+            foreach (var employeeGroup in employeesByState)
+            {
+                Console.WriteLine((string)employeeGroup.Key + ": " + employeeGroup.Count());
+
+                foreach (var employee in employeeGroup)
+                {
+                    Console.WriteLine((string)employee.Element("LastName") + ", " + (string)employee.Element("State"));
+                }
+            }
+        }
+
+        //static void MethodBasedGroupV2()
+        //{
+        //    List<Employee> employees = new List<Employee>()
+        //    {
+        //        new Employee() 
+        //        { 
+        //            FirstName = "John", 
+        //            LastName = "Smith", 
+        //            City = "Havertown",
+        //            State = "PA"
+        //        },
+        //        new Employee() 
+        //        { 
+        //            FirstName = "Jane", 
+        //            LastName = "Doe", 
+        //            City = "Ewing",
+        //            State = "NJ"
+        //        },
+        //        new Employee() 
+        //        { 
+        //            FirstName = "Jack", 
+        //            LastName = "Jones", 
+        //            City = "Fort Washington",
+        //            State = "PA"
+        //        }
+        //    };
+
+        //    var employeesByState = employees.GroupBy(e => new { e.City, e.State });
+
+        //    foreach (var employeeGroup in employeesByState)
+        //    {
+        //        Console.WriteLine(employeeGroup.Key + ": " + employeeGroup.Count());
+
+        //        foreach (var employee in employeeGroup)
+        //        {
+        //            Console.WriteLine(employee.LastName + ", " + employee.State);
+        //        }
+        //    }
+        //}
+
+        static void XmlMethodBasedGroupV2()
+        {
+
+            var employeesByState =
+                from e in root.Element("Employees").Elements("Employee")
+                group e by new {City =  (string)e.Element("City"), State = (string)e.Element("State")} into employeeGroup
+                select employeeGroup;
 
             foreach (var employeeGroup in employeesByState)
             {
@@ -496,10 +671,137 @@ namespace LINQSamples
 
                 foreach (var employee in employeeGroup)
                 {
-                    Console.WriteLine(employee.LastName + ", " + employee.State);
+                    Console.WriteLine((string)employee.Element("LastName") + ", " + (string)employee.Element("State"));
                 }
             }
         }
+
+        //static void Skip()
+        //{
+        //    List<Employee> employees = new List<Employee>()
+        //    {
+        //        new Employee() 
+        //        { 
+        //            FirstName = "John", 
+        //            LastName = "Smith"                    
+        //        },
+        //        new Employee() 
+        //        { 
+        //            FirstName = "Jane", 
+        //            LastName = "Doe"                    
+        //        },
+        //        new Employee() 
+        //        { 
+        //            FirstName = "Jack", 
+        //            LastName = "Jones"                    
+        //        }
+        //    };
+
+        //    var newEmployees = employees.Skip(1);
+
+        //    foreach (var employee in newEmployees)
+        //    {
+        //        Console.WriteLine(employee.LastName);
+        //    }
+        //}
+
+        static void XmlSkip()
+        {
+            var newEmployees =
+                (from e in root.Element("Employees").Elements("Employee")
+                 select new { LastName = (string)e.Element("LastName") }).Skip(1);
+
+            foreach (var employee in newEmployees)
+            {
+                Console.WriteLine(employee.LastName);
+            }
+        }
+
+        //static void Take()
+        //{
+        //    List<Employee> employees = new List<Employee>()
+        //    {
+        //        new Employee() 
+        //        { 
+        //            FirstName = "John", 
+        //            LastName = "Smith"                    
+        //        },
+        //        new Employee() 
+        //        { 
+        //            FirstName = "Jane", 
+        //            LastName = "Doe"                    
+        //        },
+        //        new Employee() 
+        //        { 
+        //            FirstName = "Jack", 
+        //            LastName = "Jones"                    
+        //        }
+        //    };
+
+        //    var newEmployees = employees.Take(2);
+
+        //    foreach (var employee in newEmployees)
+        //    {
+        //        Console.WriteLine(employee.LastName);
+        //    }
+        //}
+
+        static void XmlTake()
+        {
+            var newEmployees =
+                (from e in root.Element("Employees").Elements("Employee")
+                 select new { LastName = (string)e.Element("LastName") }).Take(2);
+
+            foreach (var employee in newEmployees)
+            {
+                Console.WriteLine(employee.LastName);
+            }
+        }
+
+        
+        //static void DistinctCodeLab()
+        //{
+        //    List<State> states = new List<State>()
+        //    {
+        //        new State(){ StateId = 1, StateName = "PA"},
+        //        new State() { StateId = 2, StateName = "NJ"},
+        //        new State() { StateId = 1, StateName = "PA" },
+        //        new State() { StateId = 3, StateName = "NY"}
+        //    };
+
+        //    var distintStates = states.Distinct();
+
+        //    foreach (State state in distintStates)
+        //    {
+        //        Console.WriteLine(state.StateName);
+        //    }
+        //}
+
+        static void XmlDistinctCodeLab()
+        {
+
+            var distintStates =
+                (from s in root.Element("States").Elements("State")
+                 select new { StateName = (string)s.Element("StateName") }).Distinct();
+
+            foreach (var state in distintStates)
+            {
+                Console.WriteLine(state.StateName);
+            }
+        }
+
+        static void Distinct()
+        {
+            int[] myArray = new int[] { 1, 2, 3, 1, 2, 3, 1, 2, 3 };
+
+            var distinctArray = myArray.Distinct();
+
+            foreach (int i in distinctArray)
+            {
+                Console.WriteLine(i);
+            }
+        }
+
 
         static void Concat()
         {
@@ -596,95 +898,7 @@ namespace LINQSamples
                 Console.WriteLine(employee.Name);
             }            
         }
-
-        static void Skip()
-        {
-            List<Employee> employees = new List<Employee>()
-            {
-                new Employee() 
-                { 
-                    FirstName = "John", 
-                    LastName = "Smith"                    
-                },
-                new Employee() 
-                { 
-                    FirstName = "Jane", 
-                    LastName = "Doe"                    
-                },
-                new Employee() 
-                { 
-                    FirstName = "Jack", 
-                    LastName = "Jones"                    
-                }
-            };
-
-            var newEmployees = employees.Skip(1);
-
-            foreach (var employee in newEmployees)
-            {
-                Console.WriteLine(employee.LastName);
-            }
-        }
-
-        static void Take()
-        {
-            List<Employee> employees = new List<Employee>()
-            {
-                new Employee() 
-                { 
-                    FirstName = "John", 
-                    LastName = "Smith"                    
-                },
-                new Employee() 
-                { 
-                    FirstName = "Jane", 
-                    LastName = "Doe"                    
-                },
-                new Employee() 
-                { 
-                    FirstName = "Jack", 
-                    LastName = "Jones"                    
-                }
-            };
-
-            var newEmployees = employees.Take(2);
-
-            foreach (var employee in newEmployees)
-            {
-                Console.WriteLine(employee.LastName);
-            }
-        }
-
-        static void Distinct()
-        {
-            int[] myArray = new int[] { 1, 2, 3, 1, 2, 3, 1, 2, 3 };
-
-            var distinctArray = myArray.Distinct();
-
-            foreach (int i in distinctArray)
-            {
-                Console.WriteLine(i);
-            }
-        }
-
-        static void DistinctCodeLab()
-        {
-            List<State> states = new List<State>()
-            {
-                new State(){ StateId = 1, StateName = "PA"},
-                new State() { StateId = 2, StateName = "NJ"},
-                new State() { StateId = 1, StateName = "PA" },
-                new State() { StateId = 3, StateName = "NY"}
-            };
-
-            var distintStates = states.Distinct();
-
-            foreach (State state in distintStates)
-            {
-                Console.WriteLine(state.StateName);
-            }
-        }
-
+        
         static bool IsEvenAndGT5(int i)
         {
             return (i % 2 == 0 && i > 5);
