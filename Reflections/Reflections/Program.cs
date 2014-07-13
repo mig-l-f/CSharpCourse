@@ -8,8 +8,9 @@ namespace Reflections
     {
         static void Main(string[] args)
         {
-            
-            Parser parser = new Parser();
+
+            Assembly assembly = Assembly.Load("Reflections");
+            Parser parser = new Parser(assembly);
             Object obj = parser.parseXml("../../Data/types.xml");
 
             Console.WriteLine((Person)obj);

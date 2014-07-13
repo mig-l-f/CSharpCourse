@@ -13,9 +13,9 @@ namespace Reflections
     {
         private Assembly myAssembly = null;
 
-        public Parser() 
+        public Parser(Assembly assembly)
         {
-            myAssembly = Assembly.Load("Reflections");
+            this.myAssembly = assembly;
         }
 
         public Object createInstance(String object_name)

@@ -7,16 +7,25 @@ using System.Xml;
 using Reflections;
 using Reflections.Model;
 using NUnit.Framework;
+using System.Reflection;
 
 namespace ReflectionsTest
 {
     [TestFixture]
     public class ParserTest
     {
+        Parser parser = null;
+
+        [SetUp]
+        public void setUp()
+        {
+            Assembly assembly = Assembly.Load("Reflections");
+            parser = new Parser(assembly);
+        }
+
         [Test]
         public void createInstanceTest()
-        {
-            Parser parser = new Parser();
+        {            
             var target = parser.createInstance("Person");
             Assert.AreEqual(typeof(Person), target.GetType());
         }
@@ -24,7 +33,7 @@ namespace ReflectionsTest
         [Test]
         public void populatePropertyTest()
         {
-            Parser parser = new Parser();
+         
             Person p = new Person();
             parser.populateProperty(p, "name", "Miguel");
 
@@ -34,7 +43,7 @@ namespace ReflectionsTest
         [Test]
         public void populatePropertyWithIntTest()
         {
-            Parser parser = new Parser();
+         
             Person p = new Person();
             parser.populateProperty(p, "age", "33");
 
@@ -44,7 +53,7 @@ namespace ReflectionsTest
         [Test]
         public void parseObjectTest()
         {
-            Parser parser = new Parser();
+         
             string myXml = @"<Person name=""Bob"" age=""14"" />";
             XmlDocument doc = new XmlDocument();
             doc.LoadXml(myXml);
