@@ -12,6 +12,7 @@ using System.Windows.Forms;
 using System.Security.Cryptography;
 using System.IO;
 using System.Diagnostics;
+using UserManager.Model.Users;
 
 namespace UserManager
 {
@@ -94,15 +95,15 @@ namespace UserManager
             byte[] secretKey = Encoding.UTF8.GetBytes(tbUsername.Text);
 
             // We also need to check the username is the same!
-            if (ComputeHash(dataToHash, secretKey).SequenceEqual(
-                users[Convert.ToInt32(lvUsers.SelectedIndices[0])].Password))
-            {
-                MessageBox.Show(this, "Passwords match");
-            }
-            else
-            {
-                MessageBox.Show(this, "Passwords DO NOT match");
-            }
+            //if (ComputeHash(dataToHash, secretKey).SequenceEqual(
+            //    users[Convert.ToInt32(lvUsers.SelectedIndices[0])].Password))
+            //{
+            //    MessageBox.Show(this, "Passwords match");
+            //}
+            //else
+            //{
+            //    MessageBox.Show(this, "Passwords DO NOT match");
+            //}
 
         }
     }
