@@ -16,7 +16,9 @@ namespace UserManager.Model.Users
         {
             get
             {
-                if (!String.IsNullOrEmpty(GetUsernameValidationError()) | !String.IsNullOrEmpty(GetRealnameValidationError()))
+                if (!String.IsNullOrEmpty(GetUsernameValidationError()) | 
+                    !String.IsNullOrEmpty(GetPasswordValidationError()) |
+                    !String.IsNullOrEmpty(GetRealnameValidationError()))
                     return false;
 
                 return true;
@@ -70,6 +72,14 @@ namespace UserManager.Model.Users
                 return String.Empty;
             else
                 return "Invalid Realname. Only upper or lower case letters.";
+        }
+
+        public string GetPasswordValidationError()
+        {
+            if (!String.IsNullOrEmpty(Password))
+                return String.Empty;
+            else
+                return "Invalid empty password.";
         }
 
         #endregion
