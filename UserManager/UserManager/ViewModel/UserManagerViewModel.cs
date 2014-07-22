@@ -1,4 +1,5 @@
 ﻿using System;
+using UserManager.Model;
 using UserManager.Model.Users;
 using UserManager.Model.Encryption;
 using System.Collections.Generic;
@@ -7,17 +8,19 @@ using System.Collections.Specialized;
 using System.Linq;
 using System.Text;
 using System.ComponentModel;
+using System.Windows.Input;
 //using System.Threading.Tasks;
 
 namespace UserManager.ViewModel
 {
-    public class UserManagerViewModel : IDataErrorInfo
+    public class UserManagerViewModel : IDataErrorInfo, INotifyPropertyChanged
     {
         #region Fields
         private UserRepository repository_;
         private User currentUser_;
         private PasswordHasher hasher_;
         private string error;
+        private bool isAuthenticated_;
         #endregion
 
         #region Constructors
@@ -26,7 +29,7 @@ namespace UserManager.ViewModel
             this.currentUser_ = user;
             this.repository_ = repository;
             this.hasher_ = hasher;
-            error = String.Empty;
+            error = String.Empty;            
         }
         #endregion
 
@@ -41,6 +44,7 @@ namespace UserManager.ViewModel
             set
             {
                 currentUser_.Username = value;
+                NotifyPropertyChanged("Username");
             }
         }
 
@@ -53,6 +57,7 @@ namespace UserManager.ViewModel
             set
             {
                 currentUser_.Password = value;
+                NotifyPropertyChanged("Password");
             }
         }
 
@@ -65,6 +70,7 @@ namespace UserManager.ViewModel
             set
             {
                 currentUser_.Realname = value;
+                NotifyPropertyChanged("Realname");
             }
         }
 
@@ -76,6 +82,29 @@ namespace UserManager.ViewModel
             }            
         }
 
+        public ICommand AddUserCommand 
+        {
+            get { return new RelayCommand(param => this.AddUser()); } 
+        }
+
+        public ICommand CheckUserCommand
+        {
+            get { return new RelayCommand(param => this.IsUserValid()); }
+        }
+
+        public Boolean IsAuthenticated 
+        {
+            get
+            {
+                return isAuthenticated_;
+            }
+            set 
+            {
+                isAuthenticated_ = value;
+                NotifyPropertyChanged("IsAuthenticated"); 
+            }
+        }
+
         #endregion
 
         public void AddUser()
@@ -83,29 +112,50 @@ namespace UserManager.ViewModel
             currentUser_.Password = hasher_.GetHash(currentUser_.Password, currentUser_.Username);
 
             if (repository_.AddUser(currentUser_))
-                currentUser_ = new User(); // clear the current user, so a new one can be inserted
+            {
+                ClearCurrentUserAddNewOne();
+                NotifyPropertyChanged("Users");
+            }
+                
+               // currentUser_ = new User(); // clear the current user, so a new one can be inserted
 
         }
 
-        public bool IsUserValid()
+        public void IsUserValid()
         {
             User selectedUser = repository_.GetUser(Username);
             if (selectedUser.IsNullOrEmpty())
             {
                 error = "Unknown username";
-                return false;
+                IsAuthenticated = false;
+                Console.WriteLine("Failed User Name");
             }
-            if (!hasher_.VerifyHash(Password, selectedUser.Password, Username))
+            else if (!hasher_.VerifyHash(Password, selectedUser.Password, Username))
             {
                 error = "Passwords do not match";
-                return false;
+                IsAuthenticated = false;
+                Console.WriteLine("Failed Password");
             }
-
-            error = String.Empty;
-            return true;
+            else 
+            {
+                error = String.Empty;
+                IsAuthenticated = true;
+                Console.WriteLine("User Authenticated");
+            }
+            NotifyPropertyChanged("IsAutenticated");
         }
 
-        #region IDataErrorInfo
+        private void ClearCurrentUserAddNewOne()
+        {
+            currentUser_ = new User();
+            IsAuthenticated = false;
+            NotifyPropertyChanged("Username");
+            NotifyPropertyChanged("Password");
+            NotifyPropertyChanged("Realname");
+            NotifyPropertyChanged("IsAuthenticated");
+        }
+
+        #region IDataErrorInfo Members
         string IDataErrorInfo.Error
         {
             get { return error; }
@@ -118,6 +168,19 @@ namespace UserManager.ViewModel
                 return (currentUser_ as IDataErrorInfo)[propertyName];
             }
         }
+        #endregion
+
+
+        #region INotifyPropertyChanged Members
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void NotifyPropertyChanged(string propertyName)
+        {
+            if (PropertyChanged != null)
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+        }
+
         #endregion
     }
 
