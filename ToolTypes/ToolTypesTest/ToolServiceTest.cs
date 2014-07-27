@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using NUnit.Framework;
+using NSubstitute;
 
-namespace ToolTypes
+namespace ToolTypesTest
 {
-    class ToolList
+    [TestFixture]
+    public class ToolServiceProviderTest
     {
-        public Tool[] toollist { get; set;}
+
     }
 }

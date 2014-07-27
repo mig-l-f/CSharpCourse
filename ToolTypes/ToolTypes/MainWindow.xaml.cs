@@ -18,6 +18,7 @@ using Newtonsoft.Json;
 using System.IO;
 using System.Threading;
 using System.Net.Http;
+using ToolTypes.Model.Tools;
 
 namespace ToolTypes
 {
