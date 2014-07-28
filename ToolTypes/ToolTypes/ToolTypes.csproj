@@ -62,6 +62,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Model\Service\IToolServiceProvider.cs" />
+    <Compile Include="Model\Service\ToolService.cs" />
+    <Compile Include="Model\Service\ToolServiceProvider.cs" />
     <Compile Include="Model\Tools\Tool.cs" />
     <Compile Include="Model\Tools\ToolList.cs" />
     <Page Include="MainWindow.xaml">
@@ -106,7 +109,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Model\Service\" />
+    <Folder Include="ViewModel\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

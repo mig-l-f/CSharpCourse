@@ -58,30 +58,32 @@ namespace ToolTypesTest
             ToolList list = new ToolList();
 
             list.toollist.Add(new Tool() { toolID = 1, toolLabel = "teste"});
-            DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(List<Tool>));
+            DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(ToolList));
             MemoryStream stream = new MemoryStream();
-            serializer.WriteObject(stream, list.toollist);
+            serializer.WriteObject(stream, list);
 
             String target = Encoding.UTF8.GetString(stream.ToArray());
-            String output = @"[{""toolID"":1,""toolLabel"":""teste""}]";
+            String output = @"{""toollist"":[{""toolID"":1,""toolLabel"":""teste""}]}";
             Assert.AreEqual(output, target);
         }
 
         [Test]
         public void testToolListDeserialize()
         {
-            String input = @" [
-                                { ""toolID"": 4,
-                                  ""toolLabel"": ""teste""
-                                },
-                                { ""toolID"": 6,
-                                  ""toolLabel"": ""teste 2""
-                                }
-                              ]";
-            DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(List<Tool>));
+            String input = @" {
+                                ""toollist"" : [
+                                    { ""toolID"": 4,
+                                      ""toolLabel"": ""teste""
+                                    },
+                                    { ""toolID"": 6,
+                                      ""toolLabel"": ""teste 2""
+                                    }
+                                ]
+                              }";
+            DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(ToolList));
             MemoryStream stream = new MemoryStream(Encoding.UTF8.GetBytes(input));
             ToolList target = new ToolList();
-            target.toollist = (List<Tool>)serializer.ReadObject(stream);
+            target = (ToolList)serializer.ReadObject(stream);
             Assert.IsTrue(target != null, "Should be an object");
             Assert.AreEqual(2, target.toollist.Count, "Tool list should have 2 tools");
             Assert.AreEqual(6, target.toollist[1].toolID, "Tool ID should be 6");
