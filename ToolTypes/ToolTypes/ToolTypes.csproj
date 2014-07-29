@@ -62,11 +62,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Model\RelayCommand.cs" />
     <Compile Include="Model\Service\IToolServiceProvider.cs" />
     <Compile Include="Model\Service\ToolService.cs" />
     <Compile Include="Model\Service\ToolServiceProvider.cs" />
     <Compile Include="Model\Tools\Tool.cs" />
     <Compile Include="Model\Tools\ToolList.cs" />
+    <Compile Include="ViewModel\ToolListViewModel.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -108,9 +110,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ViewModel\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

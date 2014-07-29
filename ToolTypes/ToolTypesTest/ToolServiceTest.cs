@@ -31,10 +31,9 @@ namespace ToolTypesTest
         {
             string output = @"{""toollist"":[{""toolID"":10,""toolLabel"":""this is a label""}]}";
             var toolProviderMock = Substitute.For<IToolServiceProvider>();
-            ToolService target = new ToolService(toolProviderMock);
-
             toolProviderMock.GetToolListAsync(1).Returns(Task.FromResult(output));
 
+            ToolService target = new ToolService(toolProviderMock);
             ToolList list = target.GetToolList(1).Result;
 
             toolProviderMock.Received().GetToolListAsync(1);

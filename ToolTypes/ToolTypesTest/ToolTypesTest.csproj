@@ -49,6 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ToolListSerializeTest.cs" />
+    <Compile Include="ToolListViewModelTest.cs" />
     <Compile Include="ToolServiceTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
