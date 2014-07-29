@@ -69,6 +69,9 @@
     <Compile Include="Model\Tools\Tool.cs" />
     <Compile Include="Model\Tools\ToolList.cs" />
     <Compile Include="ViewModel\ToolListViewModel.cs" />
+    <Compile Include="View\ToolListView.xaml.cs">
+      <DependentUpon>ToolListView.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -81,6 +84,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="View\ToolListView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">

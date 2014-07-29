@@ -35,9 +35,21 @@ namespace ToolTypes.ViewModel
         {
             get
             {
-                return new RelayCommand(async (param) => this.ToolList = await _toolservice.GetToolList((int)param));
+                return new RelayCommand(async (param) => this.ToolList = await _toolservice.GetToolList(Convert.ToInt32(param)));
             }
         }
+
+        public ICommand SortToolList
+        {
+            get
+            {
+                return new RelayCommand(
+                    (param) => { 
+                        this.ToolList.toollist.Sort(); 
+                    });
+            }
+        }
+
         #endregion
 
         public ToolListViewModel(ToolList toollist, ToolService toolservice)

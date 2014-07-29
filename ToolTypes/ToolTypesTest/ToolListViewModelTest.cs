@@ -47,5 +47,19 @@ namespace ToolTypesTest
 
             Assert.IsTrue(eventWasRaised, "Event for username change should have been raised");
         }
+
+        [Test]
+        public void sortListByToolIDUsingCommand()
+        {
+            ToolList list = new ToolList();
+            list.toollist.Add(new Tool() { toolID = 10, toolLabel = "aaaa"});
+            list.toollist.Add(new Tool() { toolID = 4, toolLabel = "vvvv"});
+
+            ToolListViewModel target = new ToolListViewModel(list, null);
+
+            target.SortToolList.Execute("toolID");
+
+            Assert.AreEqual(4, target.ToolList.toollist[0].toolID, "Tool list should have been sorted by toolID");
+        }
     }
 }
