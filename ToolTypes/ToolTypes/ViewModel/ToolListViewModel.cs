@@ -8,6 +8,7 @@ using ToolTypes.Model.Tools;
 using ToolTypes.Model.Service;
 using System.ComponentModel;
 using System.Windows.Input;
+using System.Windows.Data;
 
 namespace ToolTypes.ViewModel
 {
@@ -15,6 +16,9 @@ namespace ToolTypes.ViewModel
     {
         private ToolList _toollist;
         private ToolService _toolservice;
+        private CollectionViewSource _ToolListDataView;
+        private string _sortColumn;
+        private ListSortDirection _sortDirection;
 
         #region Properties
 
@@ -27,7 +31,17 @@ namespace ToolTypes.ViewModel
             set
             {
                 _toollist = value;
-                NotifyPropertyChanged("ToolList");
+                _ToolListDataView = new CollectionViewSource();
+                _ToolListDataView.Source = _toollist.toollist;
+                NotifyPropertyChanged("ToolListDataView");
+            }
+        }
+
+        public ListCollectionView ToolListDataView
+        {
+            get
+            {
+                return (ListCollectionView)_ToolListDataView.View;
             }
         }
 
@@ -43,10 +57,7 @@ namespace ToolTypes.ViewModel
         {
             get
             {
-                return new RelayCommand(
-                    (param) => { 
-                        this.ToolList.toollist.Sort(); 
-                    });
+                return new RelayCommand(Sort);
             }
         }
 
@@ -54,8 +65,26 @@ namespace ToolTypes.ViewModel
 
         public ToolListViewModel(ToolList toollist, ToolService toolservice)
         {
-            _toollist = toollist;
+            ToolList = toollist;
             _toolservice = toolservice;
+        }
+
+        public void Sort(object parameter)
+        {
+            string column = parameter as string;
+            if (_sortColumn == column)
+            {
+                _sortDirection = (_sortDirection == ListSortDirection.Ascending ?
+                                                   ListSortDirection.Descending :
+                                                   ListSortDirection.Ascending  );
+            }
+            else
+            {
+                _sortColumn = column;
+                _sortDirection = ListSortDirection.Ascending;
+            }
+            _ToolListDataView.SortDescriptions.Clear();
+            _ToolListDataView.SortDescriptions.Add(new SortDescription(_sortColumn, _sortDirection));
         }
 
         #region INotifyPropertyChanged

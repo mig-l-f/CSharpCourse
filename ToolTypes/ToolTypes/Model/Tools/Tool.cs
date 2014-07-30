@@ -9,12 +9,13 @@ using System.Runtime.Serialization.Json;
 namespace ToolTypes.Model.Tools
 {
     [DataContract]
-    public class Tool
+    public class Tool 
     {
         [DataMember(IsRequired=true)]
         public int toolID { get; set; }
 
         [DataMember(IsRequired=true)]
         public String toolLabel { get; set; }
+
     }
 }

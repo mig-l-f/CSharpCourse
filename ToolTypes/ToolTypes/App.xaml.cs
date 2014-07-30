@@ -28,7 +28,6 @@ namespace ToolTypes
             ToolListView view = new ToolListView();
 
             ToolList toolList = new ToolList();
-            toolList.toollist.Add(new Tool() { toolID = 1, toolLabel = "teste" });
 
             HttpClient httpClient = new HttpClient();
             ToolServiceProvider serviceProvider = new ToolServiceProvider(httpClient);

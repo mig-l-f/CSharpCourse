@@ -1,14 +1,23 @@
 ﻿<Window x:Class="ToolTypes.View.ToolListView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:i="clr-namaspace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
         Title="ToolListView" Height="400" Width="500">
     <Grid>
         <ListView Height="192" Margin="10,10,10,0" VerticalAlignment="Top"
-                  ItemsSource="{Binding Path=ToolList.toollist}">
+                  ItemsSource="{Binding Path=ToolListDataView}">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Width="100" Header="Tool ID" DisplayMemberBinding="{Binding Path=toolID}" />
-                    <GridViewColumn Width="372" Header="Tool Label" DisplayMemberBinding="{Binding Path=toolLabel}" />
+                    <GridViewColumn Width="100" DisplayMemberBinding="{Binding Path=toolID}">
+                        <GridViewColumnHeader Content="Tool ID" 
+                                              Command="{Binding SortToolList}"
+                                              CommandParameter="toolID"/>
+                    </GridViewColumn>
+                    <GridViewColumn Width="372" DisplayMemberBinding="{Binding Path=toolLabel}">
+                        <GridViewColumnHeader Content="Tool Label" 
+                                              Command="{Binding SortToolList}" 
+                                              CommandParameter="toolLabel"/>
+                    </GridViewColumn>
                 </GridView>
             </ListView.View>
         </ListView>

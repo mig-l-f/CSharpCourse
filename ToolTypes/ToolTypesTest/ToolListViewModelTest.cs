@@ -45,7 +45,7 @@ namespace ToolTypesTest
             target.PropertyChanged += (sender, e) => eventWasRaised = e.PropertyName == "ToolList";
             target.GetToolList.Execute(1);
 
-            Assert.IsTrue(eventWasRaised, "Event for username change should have been raised");
+            Assert.IsTrue(eventWasRaised, "Event for toollist change should have been raised");
         }
 
         [Test]
@@ -57,9 +57,29 @@ namespace ToolTypesTest
 
             ToolListViewModel target = new ToolListViewModel(list, null);
 
+            bool eventWasRaised = false;
+            target.PropertyChanged += (sender, e) => eventWasRaised = e.PropertyName == "ToolList";
             target.SortToolList.Execute("toolID");
 
             Assert.AreEqual(4, target.ToolList.toollist[0].toolID, "Tool list should have been sorted by toolID");
+            Assert.IsTrue(eventWasRaised, "Event for toollist change should have been raised");
+        }
+
+        [Test]
+        public void sortListByToolLabelUsingCommand()
+        {
+            ToolList list = new ToolList();
+            list.toollist.Add(new Tool() { toolID = 10, toolLabel = "zzzz" });
+            list.toollist.Add(new Tool() { toolID = 5, toolLabel = "jjjj" });
+            list.toollist.Add(new Tool() { toolID = 4, toolLabel = "vvvv" });
+
+            ToolListViewModel target = new ToolListViewModel(list, null);
+
+            target.SortToolList.Execute("toolLabel");
+            Assert.AreEqual("jjjj", target.ToolList.toollist[0].toolLabel, "Tool list should be sorted by Label");
+            Assert.AreEqual("vvvv", target.ToolList.toollist[1].toolLabel, "Tool list should be sorted by Label");
+            Assert.AreEqual("zzzz", target.ToolList.toollist[2].toolLabel, "Tool list should be sorted by Label");
+
         }
     }
 }
